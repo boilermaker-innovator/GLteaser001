@@ -1,0 +1,123 @@
+// manifest.json
+{
+  "manifest_version": 3,
+  "name": "GL Teaser POC",
+  "version": "0.1",
+  "description": "Link preview proof of concept",
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "js": ["content.js"],
+    "css": ["styles.css"]
+  }],
+  "host_permissions": [
+    "https://*/*"
+  ]
+}
+
+// content.js
+const GL_ATTR = 'data-gl-preview';
+
+function createPreviewCard(data) {
+  const card = document.createElement('div');
+  card.className = 'gl-preview-card';
+  card.innerHTML = `
+    <div class="gl-header">
+      <img src="${data.logo || ''}" alt="${data.title}"/>
+      <h3>${data.title}</h3>
+    </div>
+    <div class="gl-tabs">
+      <button class="active">Overview</button>
+      <button>Details</button>
+    </div>
+    <div class="gl-content">
+      <p>${data.description}</p>
+    </div>
+  `;
+  return card;
+}
+
+function attachPreviewToLink(link) {
+  const previewData = JSON.parse(link.getAttribute(GL_ATTR));
+  const card = createPreviewCard(previewData);
+  
+  link.addEventListener('mouseenter', (e) => {
+    const rect = link.getBoundingClientRect();
+    card.style.top = `${rect.bottom + window.scrollY}px`;
+    card.style.left = `${rect.left}px`;
+    document.body.appendChild(card);
+  });
+  
+  link.addEventListener('mouseleave', (e) => {
+    const relatedCard = document.querySelector('.gl-preview-card');
+    if (relatedCard && !relatedCard.matches(':hover')) {
+      relatedCard.remove();
+    }
+  });
+}
+
+// Find and process all GL-enabled links
+function initGLPreviews() {
+  const glLinks = document.querySelectorAll(`[${GL_ATTR}]`);
+  glLinks.forEach(attachPreviewToLink);
+}
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', initGLPreviews);
+
+// styles.css
+.gl-preview-card {
+  position: absolute;
+  width: 300px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 1000;
+  padding: 12px;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.gl-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.gl-header img {
+  width: 40px;
+  height: 40px;
+  margin-right: 12px;
+  border-radius: 4px;
+}
+
+.gl-tabs {
+  display: flex;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 12px;
+}
+
+.gl-tabs button {
+  padding: 8px 12px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.gl-tabs button.active {
+  border-bottom: 2px solid #0077ff;
+  color: #0077ff;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+// Example HTML usage
+<a href="https://example.com" 
+   data-gl-preview='{"title":"Software Engineer","logo":"logo.png","description":"Exciting role at a growing startup..."}'>
+   View Job
+</a>
