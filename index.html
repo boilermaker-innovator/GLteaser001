@@ -1,3 +1,237 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced GL Teaser Preview</title>
+    <style>
+        /* Base styles remain the same */
+
+        /* Enhanced Teaser Styles */
+        .gl-teaser {
+            width: 90%;
+            max-width: 500px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+            overflow: hidden;
+            margin: 20px auto;
+        }
+
+        .gl-header {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .gl-header h3 {
+            margin: 0;
+            color: #1a1a1a;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .gl-tabs {
+            display: flex;
+            padding: 12px;
+            gap: 8px;
+            background: #fff;
+            border-bottom: 1px solid #eee;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .gl-tab {
+            padding: 8px 16px;
+            background: #f0f2f5;
+            border: none;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #666;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+
+        .gl-tab:hover {
+            background: #e4e6e9;
+            color: #333;
+        }
+
+        .gl-tab.active {
+            background: #0066cc;
+            color: white;
+        }
+
+        .gl-content {
+            padding: 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Bullet point styling */
+        .gl-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .gl-list li {
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 12px;
+        }
+
+        .gl-list li:before {
+            content: "•";
+            color: #0066cc;
+            font-size: 20px;
+            position: absolute;
+            left: 8px;
+            top: -2px;
+        }
+
+        /* Section styling */
+        .gl-section {
+            margin-bottom: 16px;
+        }
+
+        .gl-section-title {
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+
+        /* Data point styling */
+        .gl-data-point {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 8px;
+        }
+
+        .gl-data-label {
+            font-weight: 500;
+            color: #666;
+            min-width: 120px;
+        }
+
+        .gl-data-value {
+            color: #333;
+        }
+
+        /* Contact section styling */
+        .gl-contact {
+            background: #f8f9fa;
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 16px;
+        }
+
+        .gl-contact-title {
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+
+        .gl-contact-info {
+            color: #666;
+        }
+
+        /* Close button styling */
+        .gl-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+
+        .gl-close:hover {
+            background: #eee;
+            color: #333;
+        }
+
+        /* Status badge */
+        .gl-status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            background: #e6f3ff;
+            color: #0066cc;
+            margin-left: 12px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Example of formatted teaser content -->
+    <div class="gl-teaser">
+        <div class="gl-header">
+            <h3>Port Hedland FIFO Roles<span class="gl-status">Active</span></h3>
+            <button class="gl-close">&times;</button>
+        </div>
+
+        <div class="gl-tabs">
+            <button class="gl-tab active">Overview</button>
+            <button class="gl-tab">Requirements</button>
+            <button class="gl-tab">Benefits</button>
+            <button class="gl-tab">Apply</button>
+        </div>
+
+        <div class="gl-content">
+            <div class="gl-section">
+                <div class="gl-section-title">Position Details</div>
+                <ul class="gl-list">
+                    <li>Multiple FIFO positions available</li>
+                    <li>2/1 roster with competitive rates</li>
+                    <li>Immediate start available</li>
+                    <li>Extended contracts with possibility of permanent roles</li>
+                </ul>
+            </div>
+
+            <div class="gl-section">
+                <div class="gl-section-title">Key Information</div>
+                <div class="gl-data-point">
+                    <span class="gl-data-label">Location:</span>
+                    <span class="gl-data-value">Port Hedland, WA</span>
+                </div>
+                <div class="gl-data-point">
+                    <span class="gl-data-label">Roster:</span>
+                    <span class="gl-data-value">2 weeks on / 1 week off</span>
+                </div>
+                <div class="gl-data-point">
+                    <span class="gl-data-label">Rate:</span>
+                    <span class="gl-data-value">$65-75 per hour</span>
+                </div>
+            </div>
+
+            <div class="gl-contact">
+                <div class="gl-contact-title">How to Apply</div>
+                <div class="gl-contact-info">
+                    Email: recruitment@example.com<br>
+                    Reference: PH2024-FIFO<br>
+                    Closing Date: 28 Feb 2024
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+...........".
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
