@@ -3,29 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GL Teaser - Touch Version</title>
+    <title>Gifylink Text Links Demo</title>
     <style>
         body {
             font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", sans-serif;
             margin: 0;
             padding: 20px;
             background: #f0f2f5;
+            line-height: 1.6;
         }
 
-        .demo-container {
-            max-width: 600px;
+        .container {
+            max-width: 800px;
             margin: 0 auto;
+            padding: 20px;
         }
 
-        .gl-link {
-            display: block;
+        .text-content {
             background: white;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 12px;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        a {
+            color: #0066cc;
             text-decoration: none;
-            color: #1a1a1a;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        a:hover {
+            text-decoration: underline;
         }
 
         .gl-preview-card {
@@ -35,6 +42,7 @@
             overflow: hidden;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             display: none;
+            max-width: 600px;
         }
 
         .gl-preview-card.active {
@@ -44,6 +52,7 @@
         .gl-header {
             padding: 15px;
             border-bottom: 1px solid #eee;
+            background: #f8f9fa;
         }
 
         .gl-header h3 {
@@ -55,8 +64,7 @@
             display: flex;
             padding: 10px;
             gap: 8px;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
+            border-bottom: 1px solid #eee;
         }
 
         .gl-tab {
@@ -65,7 +73,6 @@
             border: none;
             border-radius: 20px;
             font-size: 14px;
-            white-space: nowrap;
             color: #1a1a1a;
         }
 
@@ -78,86 +85,106 @@
             padding: 15px;
         }
 
-        .toggle-preview {
-            background: #0066cc;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 14px;
-            margin-top: 10px;
+        p {
+            margin: 0 0 1em 0;
         }
     </style>
 </head>
 <body>
-    <div class="demo-container">
-        <h1>GL Teaser - Touch Demo</h1>
-        
-        <!-- Test Link 1 -->
-        <div class="gl-link-container">
-            <a class="gl-link" href="#">
-                <h3>Boilermaker Position</h3>
-                <p>FIFO role with great benefits</p>
-            </a>
-            <button class="toggle-preview">Show Preview</button>
-            <div class="gl-preview-card">
-                <div class="gl-header">
-                    <h3>Boilermaker Position</h3>
-                </div>
-                <div class="gl-tabs">
-                    <button class="gl-tab active">Overview</button>
-                    <button class="gl-tab">Requirements</button>
-                    <button class="gl-tab">Benefits</button>
-                </div>
-                <div class="gl-content">
-                    <p>FIFO role with excellent benefits package. 2/1 roster with competitive pay.</p>
-                </div>
+    <div class="container">
+        <div class="text-content">
+            <h1>Mining Industry Opportunities</h1>
+            
+            <p>We currently have several positions available in Western Australia. Check out our 
+            <a href="#boilermaker" data-gl="teaser1">Senior Boilermaker role</a> in Port Hedland, or our 
+            <a href="#fitter" data-gl="teaser2">Mechanical Fitter position</a> in Karratha.</p>
+            
+            <p>For those interested in FIFO opportunities, we have an exciting 
+            <a href="#supervisor" data-gl="teaser3">Maintenance Supervisor opening</a> and a 
+            <a href="#engineer" data-gl="teaser4">Project Engineer role</a> available.</p>
+        </div>
+
+        <!-- Teaser 1 -->
+        <div id="teaser1" class="gl-preview-card">
+            <div class="gl-header">
+                <h3>Senior Boilermaker</h3>
+            </div>
+            <div class="gl-tabs">
+                <button class="gl-tab active">Overview</button>
+                <button class="gl-tab">Requirements</button>
+                <button class="gl-tab">Benefits</button>
+                <button class="gl-tab">Apply</button>
+            </div>
+            <div class="gl-content">
+                <p>Port Hedland based position with excellent salary package and development opportunities.</p>
             </div>
         </div>
 
-        <!-- Test Link 2 -->
-        <div class="gl-link-container">
-            <a class="gl-link" href="#">
+        <!-- Teaser 2 -->
+        <div id="teaser2" class="gl-preview-card">
+            <div class="gl-header">
                 <h3>Mechanical Fitter</h3>
-                <p>Perth based position</p>
-            </a>
-            <button class="toggle-preview">Show Preview</button>
-            <div class="gl-preview-card">
-                <div class="gl-header">
-                    <h3>Mechanical Fitter</h3>
-                </div>
-                <div class="gl-tabs">
-                    <button class="gl-tab active">Overview</button>
-                    <button class="gl-tab">Details</button>
-                    <button class="gl-tab">Apply</button>
-                </div>
-                <div class="gl-content">
-                    <p>Permanent position in Perth with competitive salary and benefits.</p>
-                </div>
+            </div>
+            <div class="gl-tabs">
+                <button class="gl-tab active">Overview</button>
+                <button class="gl-tab">Skills</button>
+                <button class="gl-tab">Perks</button>
+                <button class="gl-tab">Contact</button>
+            </div>
+            <div class="gl-content">
+                <p>Karratha based role working with leading mining equipment and technology.</p>
+            </div>
+        </div>
+
+        <!-- Teaser 3 -->
+        <div id="teaser3" class="gl-preview-card">
+            <div class="gl-header">
+                <h3>Maintenance Supervisor</h3>
+            </div>
+            <div class="gl-tabs">
+                <button class="gl-tab active">Role</button>
+                <button class="gl-tab">Experience</button>
+                <button class="gl-tab">Package</button>
+                <button class="gl-tab">Details</button>
+            </div>
+            <div class="gl-content">
+                <p>FIFO position managing maintenance teams across multiple sites. 2/1 roster.</p>
+            </div>
+        </div>
+
+        <!-- Teaser 4 -->
+        <div id="teaser4" class="gl-preview-card">
+            <div class="gl-header">
+                <h3>Project Engineer</h3>
+            </div>
+            <div class="gl-tabs">
+                <button class="gl-tab active">Summary</button>
+                <button class="gl-tab">Qualifications</button>
+                <button class="gl-tab">Rewards</button>
+                <button class="gl-tab">Apply</button>
+            </div>
+            <div class="gl-content">
+                <p>Lead engineering projects across our mining operations. FIFO 8/6 roster.</p>
             </div>
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Handle preview toggles
-            document.querySelectorAll('.toggle-preview').forEach(button => {
-                button.addEventListener('click', () => {
-                    const card = button.nextElementSibling;
-                    const isShowing = card.classList.contains('active');
+            // Handle link clicks
+            document.querySelectorAll('a[data-gl]').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
                     
-                    // Hide all cards first
-                    document.querySelectorAll('.gl-preview-card').forEach(c => {
-                        c.classList.remove('active');
+                    // Hide all teasers first
+                    document.querySelectorAll('.gl-preview-card').forEach(card => {
+                        card.classList.remove('active');
                     });
-                    document.querySelectorAll('.toggle-preview').forEach(b => {
-                        b.textContent = 'Show Preview';
-                    });
-
-                    if (!isShowing) {
-                        card.classList.add('active');
-                        button.textContent = 'Hide Preview';
-                    }
+                    
+                    // Show clicked teaser
+                    const teaserId = link.getAttribute('data-gl');
+                    const teaser = document.getElementById(teaserId);
+                    teaser.classList.add('active');
                 });
             });
 
