@@ -1,3 +1,223 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>GL Quick Editor</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            padding: 16px;
+            background: #f0f8ff;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .paste-button {
+            background: #0077B5;
+            color: white;
+            border: none;
+            padding: 20px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            width: 100%;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+
+        .url-display {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            word-break: break-all;
+        }
+
+        .gl-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            background: #0077B5;
+            color: white;
+            border-radius: 6px;
+            font-size: 14px;
+            margin-left: 8px;
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .action-button {
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .edit-button {
+            background: #e3f2fd;
+            color: #0077B5;
+        }
+
+        .preview-button {
+            background: #0077B5;
+            color: white;
+        }
+
+        .editor {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        textarea.input-field {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .preview-area {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            border: 2px solid #0077B5;
+        }
+
+        .tab-bar {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .tab.active {
+            background: #0077B5;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <!-- Paste Section -->
+            <button class="paste-button" id="pasteButton">
+                Tap to Paste URL
+            </button>
+
+            <!-- URL Display -->
+            <div class="url-display" id="urlDisplay" style="display: none;">
+                <span id="pastedUrl"></span>
+                <span class="gl-badge">GL</span>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions" id="quickActions" style="display: none;">
+                <button class="action-button edit-button" onclick="showEditor()">
+                    Quick Edit
+                </button>
+                <button class="action-button preview-button" onclick="showPreview()">
+                    See Preview
+                </button>
+            </div>
+
+            <!-- Editor Section -->
+            <div class="editor" id="editor">
+                <input type="text" class="input-field" placeholder="Enter title" id="titleInput">
+                <textarea class="input-field" placeholder="Enter description" id="descInput"></textarea>
+                <button class="paste-button" onclick="updatePreview()">Update Preview</button>
+            </div>
+
+            <!-- Preview Section -->
+            <div class="preview-area" id="previewArea">
+                <h3 id="previewTitle"></h3>
+                <div class="tab-bar">
+                    <button class="tab active">About</button>
+                    <button class="tab">Details</button>
+                </div>
+                <p id="previewDesc"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('pasteButton').addEventListener('click', async () => {
+            try {
+                const text = await navigator.clipboard.readText();
+                document.getElementById('pastedUrl').textContent = text;
+                document.getElementById('urlDisplay').style.display = 'block';
+                document.getElementById('quickActions').style.display = 'grid';
+            } catch (err) {
+                alert('Please make sure you\'ve copied the URL and allowed paste access.');
+            }
+        });
+
+        function showEditor() {
+            document.getElementById('editor').style.display = 'block';
+            document.getElementById('previewArea').style.display = 'none';
+        }
+
+        function showPreview() {
+            document.getElementById('previewArea').style.display = 'block';
+            document.getElementById('editor').style.display = 'none';
+        }
+
+        function updatePreview() {
+            const title = document.getElementById('titleInput').value;
+            const desc = document.getElementById('descInput').value;
+            
+            document.getElementById('previewTitle').textContent = title;
+            document.getElementById('previewDesc').textContent = desc;
+            
+            showPreview();
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
