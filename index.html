@@ -1,4 +1,322 @@
 
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GL Teaser with Border</title>
+    <style>
+        body {
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f0f8ff;
+        }
+
+        /* Link and GL styles */
+        .link {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .gl {
+            color: #0066cc;
+            cursor: pointer;
+            margin-left: 4px;
+            font-size: 0.85em;
+        }
+
+        /* Enhanced Teaser Styles */
+        .gl-teaser {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 500px;
+            background: white;
+            border: 2px solid #0066cc; /* Added border */
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1000;
+            overflow: hidden; /* Ensures border radius works with header */
+        }
+
+        .gl-header {
+            background: #0066cc; /* Matching border color */
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .gl-header h3 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+            color: white; /* Changed for contrast */
+        }
+
+        .gl-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .gl-close:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .gl-tabs {
+            display: flex;
+            padding: 10px 10px 0;
+            gap: 4px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #eee;
+        }
+
+        .gl-tab {
+            padding: 8px 15px;
+            border: none;
+            background: #eee;
+            border-radius: 4px 4px 0 0;
+            font-size: 14px;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .gl-tab:hover {
+            background: #e0e0e0;
+        }
+
+        .gl-tab.active {
+            background: white;
+            color: #0066cc;
+            border-bottom: 2px solid #0066cc;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .tab-content ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .tab-content li {
+            margin-bottom: 8px;
+        }
+
+        .gl-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+
+        /* Form Styles */
+        .form-container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .create-button {
+            background: #0066cc;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .clear-button {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <!-- Form for creating teasers -->
+    <div class="form-container">
+        <h2>Create GL Teaser</h2>
+        
+        <div class="button-group">
+            <button class="create-button" onclick="prefillForm()">Load Example</button>
+            <button class="clear-button" onclick="clearForm()">Clear Form</button>
+        </div>
+
+        <form id="teaserForm">
+            <div class="form-group">
+                <label>Link Text</label>
+                <input type="text" id="linkText" required placeholder="e.g., Port Hedland Positions">
+            </div>
+
+            <div class="form-group">
+                <label>Link URL</label>
+                <input type="url" id="linkUrl" required placeholder="https://example.com/jobs">
+            </div>
+
+            <div class="form-group">
+                <label>Teaser Title</label>
+                <input type="text" id="teaserTitle" required placeholder="e.g., Port Hedland Opportunities">
+            </div>
+
+            <!-- Tab 1 -->
+            <div class="form-group">
+                <label>Overview Content</label>
+                <textarea id="tab1Content" required placeholder="Content for Overview tab..."></textarea>
+            </div>
+
+            <!-- Tab 2 -->
+            <div class="form-group">
+                <label>Details Content</label>
+                <textarea id="tab2Content" required placeholder="Content for Details tab..."></textarea>
+            </div>
+
+            <!-- Tab 3 -->
+            <div class="form-group">
+                <label>Requirements Content</label>
+                <textarea id="tab3Content" required placeholder="Content for Requirements tab..."></textarea>
+            </div>
+
+            <!-- Tab 4 -->
+            <div class="form-group">
+                <label>How to Apply Content</label>
+                <textarea id="tab4Content" required placeholder="Content for Apply tab..."></textarea>
+            </div>
+
+            <button type="submit" class="create-button">Create Teaser</button>
+        </form>
+    </div>
+
+    <!-- Example teaser output -->
+    <p>Example:</p>
+    <p>
+        <a href="#" class="link">Port Hedland Opportunities</a>
+        <span class="gl">...</span>
+    </p>
+
+    <!-- Teaser HTML -->
+    <div class="gl-overlay"></div>
+    <div class="gl-teaser">
+        <div class="gl-header">
+            <h3>Port Hedland Opportunities</h3>
+            <button class="gl-close">&times;</button>
+        </div>
+        
+        <div class="gl-tabs">
+            <button class="gl-tab active" data-tab="overview">Overview</button>
+            <button class="gl-tab" data-tab="details">Details</button>
+            <button class="gl-tab" data-tab="requirements">Requirements</button>
+            <button class="gl-tab" data-tab="apply">Apply</button>
+        </div>
+        
+        <div id="overview" class="tab-content active">
+            <ul>
+                <li>Multiple FIFO positions available</li>
+                <li>2/1 roster with competitive rates</li>
+                <li>Immediate start available</li>
+            </ul>
+        </div>
+
+        <div id="details" class="tab-content">
+            <ul>
+                <li>Location: Port Hedland, WA</li>
+                <li>Roster: 2 weeks on / 1 week off</li>
+                <li>Pay Rate: $65-75 per hour</li>
+            </ul>
+        </div>
+
+        <div id="requirements" class="tab-content">
+            <ul>
+                <li>Trade qualification</li>
+                <li>Current HR drivers license</li>
+                <li>Mining medical and drug screen</li>
+            </ul>
+        </div>
+
+        <div id="apply" class="tab-content">
+            <p>Submit your application to:</p>
+            <ul>
+                <li>Email: recruitment@example.com</li>
+                <li>Reference: PH2024-FIFO</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Your existing JavaScript for teaser functionality...
+    </script>
+</body>
+</html>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
