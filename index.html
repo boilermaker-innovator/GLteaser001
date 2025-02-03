@@ -1,3 +1,275 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document with GL Popup Teasers</title>
+    <style>
+        body {
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f0f2f5;
+            line-height: 1.6;
+        }
+
+        .document {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .gl-link {
+            color: #0066cc;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .gl-link:hover {
+            text-decoration: underline;
+        }
+
+        .gl-teaser {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+            width: 90%;
+            max-width: 500px;
+            z-index: 1000;
+            display: none;
+        }
+
+        .gl-teaser.active {
+            display: block;
+        }
+
+        .gl-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            display: none;
+        }
+
+        .gl-overlay.active {
+            display: block;
+        }
+
+        .gl-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .gl-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .gl-close:hover {
+            background: #f0f2f5;
+        }
+
+        .gl-tabs {
+            display: flex;
+            padding: 10px;
+            gap: 8px;
+            border-bottom: 1px solid #eee;
+            overflow-x: auto;
+        }
+
+        .gl-tab {
+            padding: 8px 16px;
+            background: #f0f2f5;
+            border: none;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #1a1a1a;
+            white-space: nowrap;
+        }
+
+        .gl-tab.active {
+            background: #0066cc;
+            color: white;
+        }
+
+        .gl-content {
+            padding: 20px;
+            min-height: 150px;
+        }
+
+        h1, h2 {
+            color: #1a1a1a;
+            margin-top: 0;
+        }
+
+        p {
+            margin: 0 0 1em 0;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="document">
+        <h1>Western Australia Mining Projects Update</h1>
+
+        <h2>Current Projects</h2>
+        <p>Our expansion in the Pilbara region continues with the new <span class="gl-link" data-gl="project1">Port Hedland Processing Facility</span> 
+        showing excellent progress. The <span class="gl-link" data-gl="project2">Karratha Maintenance Hub</span> is now fully operational and 
+        supporting multiple sites in the region.</p>
+
+        <h2>Workforce Development</h2>
+        <p>We're implementing new training programs through our <span class="gl-link" data-gl="project3">Skills Development Initiative</span>. 
+        This complements our existing <span class="gl-link" data-gl="project4">Apprenticeship Program</span> which has seen great success 
+        in developing local talent.</p>
+
+        <h2>Future Plans</h2>
+        <p>Looking ahead to 2024, we're focusing on sustainable practices and efficiency improvements across all operations. 
+        This includes significant investments in equipment upgrades and process optimization.</p>
+    </div>
+
+    <!-- Overlay -->
+    <div class="gl-overlay"></div>
+
+    <!-- Teaser 1 -->
+    <div id="project1" class="gl-teaser">
+        <div class="gl-header">
+            <h3>Port Hedland Processing Facility</h3>
+            <button class="gl-close">&times;</button>
+        </div>
+        <div class="gl-tabs">
+            <button class="gl-tab active">Overview</button>
+            <button class="gl-tab">Timeline</button>
+            <button class="gl-tab">Equipment</button>
+            <button class="gl-tab">Jobs</button>
+        </div>
+        <div class="gl-content">
+            <p>State-of-the-art processing facility with advanced automation and environmental controls.</p>
+        </div>
+    </div>
+
+    <!-- Teaser 2 -->
+    <div id="project2" class="gl-teaser">
+        <div class="gl-header">
+            <h3>Karratha Maintenance Hub</h3>
+            <button class="gl-close">&times;</button>
+        </div>
+        <div class="gl-tabs">
+            <button class="gl-tab active">Overview</button>
+            <button class="gl-tab">Services</button>
+            <button class="gl-tab">Team</button>
+            <button class="gl-tab">Contact</button>
+        </div>
+        <div class="gl-content">
+            <p>Centralized maintenance facility supporting multiple mining operations in the Pilbara region.</p>
+        </div>
+    </div>
+
+    <!-- Teaser 3 -->
+    <div id="project3" class="gl-teaser">
+        <div class="gl-header">
+            <h3>Skills Development Initiative</h3>
+            <button class="gl-close">&times;</button>
+        </div>
+        <div class="gl-tabs">
+            <button class="gl-tab active">About</button>
+            <button class="gl-tab">Programs</button>
+            <button class="gl-tab">Schedule</button>
+            <button class="gl-tab">Apply</button>
+        </div>
+        <div class="gl-content">
+            <p>Comprehensive training and development program for new and existing employees.</p>
+        </div>
+    </div>
+
+    <!-- Teaser 4 -->
+    <div id="project4" class="gl-teaser">
+        <div class="gl-header">
+            <h3>Apprenticeship Program</h3>
+            <button class="gl-close">&times;</button>
+        </div>
+        <div class="gl-tabs">
+            <button class="gl-tab active">Overview</button>
+            <button class="gl-tab">Pathways</button>
+            <button class="gl-tab">Benefits</button>
+            <button class="gl-tab">Register</button>
+        </div>
+        <div class="gl-content">
+            <p>Four-year apprenticeship program developing skilled trades professionals.</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const overlay = document.querySelector('.gl-overlay');
+
+            // Handle link clicks
+            document.querySelectorAll('.gl-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    const teaserId = link.getAttribute('data-gl');
+                    const teaser = document.getElementById(teaserId);
+                    
+                    // Show overlay and teaser
+                    overlay.classList.add('active');
+                    teaser.classList.add('active');
+                });
+            });
+
+            // Handle close buttons
+            document.querySelectorAll('.gl-close').forEach(button => {
+                button.addEventListener('click', () => {
+                    overlay.classList.remove('active');
+                    document.querySelectorAll('.gl-teaser').forEach(teaser => {
+                        teaser.classList.remove('active');
+                    });
+                });
+            });
+
+            // Handle overlay clicks
+            overlay.addEventListener('click', () => {
+                overlay.classList.remove('active');
+                document.querySelectorAll('.gl-teaser').forEach(teaser => {
+                    teaser.classList.remove('active');
+                });
+            });
+
+            // Handle tabs
+            document.querySelectorAll('.gl-tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabGroup = tab.parentElement;
+                    tabGroup.querySelectorAll('.gl-tab').forEach(t => {
+                        t.classList.remove('active');
+                    });
+                    tab.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
