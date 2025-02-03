@@ -3,6 +3,309 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creating GL Teasers Guide</title>
+    <style>
+        /* Base styles */
+        body {
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f0f2f5;
+            line-height: 1.6;
+        }
+
+        .document {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        /* GL Link styles */
+        .gl-link {
+            color: #0066cc;
+            text-decoration: none;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .gl-badge {
+            display: inline-flex;
+            align-items: center;
+            background: #0066cc;
+            color: white;
+            font-size: 12px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-left: 4px;
+            font-weight: 500;
+            vertical-align: middle;
+        }
+
+        /* Teaser styles */
+        .gl-teaser {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+            width: 90%;
+            max-width: 500px;
+            z-index: 1000;
+            display: none;
+        }
+
+        .gl-teaser.active {
+            display: block;
+        }
+
+        .gl-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            display: none;
+        }
+
+        .gl-overlay.active {
+            display: block;
+        }
+
+        /* Teaser components */
+        .gl-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .gl-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .gl-tabs {
+            display: flex;
+            padding: 10px;
+            gap: 8px;
+            border-bottom: 1px solid #eee;
+            overflow-x: auto;
+        }
+
+        .gl-tab {
+            padding: 8px 16px;
+            background: #f0f2f5;
+            border: none;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #1a1a1a;
+            white-space: nowrap;
+        }
+
+        .gl-tab.active {
+            background: #0066cc;
+            color: white;
+        }
+
+        .gl-content {
+            padding: 20px;
+            min-height: 150px;
+        }
+
+        pre {
+            background: #f5f7f9;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="document">
+        <h1>Creating GL Teasers - Interactive Guide</h1>
+
+        <p>Welcome to the GL Teaser creation guide. Learn about the three main components: 
+        <span class="gl-link" data-gl="structure">Basic Structure<span class="gl-badge">GL</span></span>, 
+        <span class="gl-link" data-gl="styling">Styling Elements<span class="gl-badge">GL</span></span>, and 
+        <span class="gl-link" data-gl="implementation">Implementation Steps<span class="gl-badge">GL</span></span>.</p>
+
+        <p>Start by understanding how to <span class="gl-link" data-gl="start">create your first GL Teaser<span class="gl-badge">GL</span></span>.</p>
+    </div>
+
+    <div class="gl-overlay"></div>
+
+    <!-- Structure Teaser -->
+    <div id="structure" class="gl-teaser">
+        <div class="gl-header">
+            <h3>GL Teaser Structure</h3>
+            <button class="gl-close">&times;</button>
+        </div>
+        <div class="gl-tabs">
+            <button class="gl-tab active">HTML</button>
+            <button class="gl-tab">Components</button>
+            <button class="gl-tab">Data</button>
+            <button class="gl-tab">Example</button>
+        </div>
+        <div class="gl-content">
+            <p>Basic HTML structure for a GL Teaser includes:</p>
+            <pre><code>&lt;div class="gl-teaser"&gt;
+    &lt;div class="gl-header"&gt;
+        &lt;h3&gt;Title&lt;/h3&gt;
+        &lt;button class="gl-close"&gt;&times;&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="gl-tabs"&gt;
+        &lt;button class="gl-tab active"&gt;Tab 1&lt;/button&gt;
+        ...
+    &lt;/div&gt;
+    &lt;div class="gl-content"&gt;
+        Content here
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+    </div>
+
+    <!-- Styling Teaser -->
+    <div id="styling" class="gl-teaser">
+        <div class="gl-header">
+            <h3>GL Teaser Styling</h3>
+            <button class="gl-close">&times;</button>
+        </div>
+        <div class="gl-tabs">
+            <button class="gl-tab active">CSS</button>
+            <button class="gl-tab">Layout</button>
+            <button class="gl-tab">Animation</button>
+            <button class="gl-tab">Tips</button>
+        </div>
+        <div class="gl-content">
+            <p>Key CSS styles include:</p>
+            <pre><code>.gl-teaser {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* More styles... */
+}</code></pre>
+        </div>
+    </div>
+
+    <!-- Implementation Teaser -->
+    <div id="implementation" class="gl-teaser">
+        <div class="gl-header">
+            <h3>Implementation Steps</h3>
+            <button class="gl-close">&times;</button>
+        </div>
+        <div class="gl-tabs">
+            <button class="gl-tab active">Setup</button>
+            <button class="gl-tab">JavaScript</button>
+            <button class="gl-tab">Events</button>
+            <button class="gl-tab">Usage</button>
+        </div>
+        <div class="gl-content">
+            <p>1. Add HTML structure<br>
+               2. Include CSS styles<br>
+               3. Add JavaScript for interactivity<br>
+               4. Test and refine</p>
+        </div>
+    </div>
+
+    <!-- Getting Started Teaser -->
+    <div id="start" class="gl-teaser">
+        <div class="gl-header">
+            <h3>Getting Started</h3>
+            <button class="gl-close">&times;</button>
+        </div>
+        <div class="gl-tabs">
+            <button class="gl-tab active">Quick Start</button>
+            <button class="gl-tab">Template</button>
+            <button class="gl-tab">Demo</button>
+            <button class="gl-tab">Next Steps</button>
+        </div>
+        <div class="gl-content">
+            <p>Start with these steps:</p>
+            <ol>
+                <li>Create HTML file with basic structure</li>
+                <li>Add GL styles</li>
+                <li>Include JavaScript handlers</li>
+                <li>Add your first GL link</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const overlay = document.querySelector('.gl-overlay');
+
+            // Handle link clicks
+            document.querySelectorAll('.gl-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    const teaserId = link.getAttribute('data-gl');
+                    const teaser = document.getElementById(teaserId);
+                    
+                    overlay.classList.add('active');
+                    teaser.classList.add('active');
+                });
+            });
+
+            // Handle close buttons
+            document.querySelectorAll('.gl-close').forEach(button => {
+                button.addEventListener('click', () => {
+                    overlay.classList.remove('active');
+                    document.querySelectorAll('.gl-teaser').forEach(teaser => {
+                        teaser.classList.remove('active');
+                    });
+                });
+            });
+
+            // Handle overlay clicks
+            overlay.addEventListener('click', () => {
+                overlay.classList.remove('active');
+                document.querySelectorAll('.gl-teaser').forEach(teaser => {
+                    teaser.classList.remove('active');
+                });
+            });
+
+            // Handle tabs
+            document.querySelectorAll('.gl-tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabGroup = tab.parentElement;
+                    tabGroup.querySelectorAll('.gl-tab').forEach(t => {
+                        t.classList.remove('active');
+                    });
+                    tab.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document with GL Indicators</title>
     <style>
         /* ... Previous styles remain the same ... */
