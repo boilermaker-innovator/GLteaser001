@@ -1,129 +1,296 @@
-
-
-<!-- Add this after the <h1>Create GL Teaser</h1> -->
-<div class="button-group" style="margin-bottom: 20px;">
-    <button type="button" id="prefillButton" class="prefill-button">
-        Load Example Content
-    </button>
-    <button type="button" id="clearForm" class="clear-button">
-        Clear Form
-    </button>
-</div>
-
-<!-- Add these styles to your CSS -->
-<style>
-.button-group {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-.prefill-button {
-    background: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 6px;
-    cursor: pointer;
-}
-
-.prefill-button:hover {
-    background: #45a049;
-}
-
-.clear-button {
-    background: #f44336;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 6px;
-    cursor: pointer;
-}
-
-.clear-button:hover {
-    background: #d32f2f;
-}
-</style>
-
-<!-- Add this to your JavaScript -->
-<script>
-function clearForm() {
-    document.getElementById('teaserForm').reset();
-    document.getElementById('previewArea').innerHTML = 'Your teaser preview will appear here...';
-    document.getElementById('codeOutput').textContent = 'Code will appear here...';
-}
-
-document.getElementById('clearForm').addEventListener('click', clearForm);
-</script>
-
-
-
 <!DOCTYPE html>
-<!-- Previous HTML and styling remains the same until the form -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GL Teaser Creator</title>
+    <style>
+        body {
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f0f2f5;
+        }
 
-<script>
-// Add this function for prefilling
-function prefillForm() {
-    // Link Details
-    document.getElementById('linkText').value = 'Port Hedland FIFO Opportunities';
-    document.getElementById('linkUrl').value = 'https://example.com/port-hedland-jobs';
-    document.getElementById('indicatorStyle').value = '...';
-    document.getElementById('teaserTitle').value = 'Port Hedland FIFO Roles 2024';
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
 
-    // Tab 1 - Overview
-    document.getElementById('tab1Title').value = 'Overview';
-    document.getElementById('tab1Content').value = `• Multiple FIFO positions available
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .prefill-button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .prefill-button:hover {
+            background: #45a049;
+        }
+
+        .clear-button {
+            background: #f44336;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .clear-button:hover {
+            background: #d32f2f;
+        }
+
+        .generate-button {
+            background: #0066cc;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .generate-button:hover {
+            background: #0052a3;
+        }
+
+        .tab-section {
+            border: 1px solid #eee;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .preview {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .preview-title {
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .code {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            overflow-x: auto;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>GL Teaser Creator</h1>
+        
+        <div class="buttons">
+            <button type="button" class="prefill-button" onclick="prefillForm()">Load Example Content</button>
+            <button type="button" class="clear-button" onclick="clearForm()">Clear Form</button>
+        </div>
+
+        <form id="teaserForm">
+            <div class="form-group">
+                <label>Link Text</label>
+                <input type="text" id="linkText" required placeholder="e.g., Port Hedland Positions">
+            </div>
+
+            <div class="form-group">
+                <label>Link URL</label>
+                <input type="url" id="linkUrl" required placeholder="https://example.com/jobs">
+            </div>
+
+            <div class="form-group">
+                <label>Link Indicator Style</label>
+                <select id="indicatorStyle">
+                    <option value="...">... (ellipsis)</option>
+                    <option value="preview▾">preview▾</option>
+                    <option value="info•••">info•••</option>
+                    <option value="peek▾">peek▾</option>
+                    <option value="[more]">[more]</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Teaser Title</label>
+                <input type="text" id="teaserTitle" required placeholder="e.g., Port Hedland Opportunities">
+            </div>
+
+            <div class="tab-section">
+                <label>Tab 1 (Overview)</label>
+                <input type="text" id="tab1Title" value="Overview" required placeholder="Tab title">
+                <textarea id="tab1Content" required placeholder="Tab content..."></textarea>
+            </div>
+
+            <div class="tab-section">
+                <label>Tab 2</label>
+                <input type="text" id="tab2Title" placeholder="Tab title">
+                <textarea id="tab2Content" placeholder="Tab content..."></textarea>
+            </div>
+
+            <div class="tab-section">
+                <label>Tab 3</label>
+                <input type="text" id="tab3Title" placeholder="Tab title">
+                <textarea id="tab3Content" placeholder="Tab content..."></textarea>
+            </div>
+
+            <div class="tab-section">
+                <label>Tab 4</label>
+                <input type="text" id="tab4Title" placeholder="Tab title">
+                <textarea id="tab4Content" placeholder="Tab content..."></textarea>
+            </div>
+
+            <button type="submit" class="generate-button">Generate Teaser</button>
+        </form>
+
+        <div class="preview">
+            <div class="preview-title">Preview:</div>
+            <div id="previewArea">Your teaser will appear here...</div>
+            
+            <div class="preview-title">Generated Code:</div>
+            <div id="codeOutput" class="code">Code will appear here...</div>
+        </div>
+    </div>
+
+    <script>
+        function prefillForm() {
+            document.getElementById('linkText').value = 'Port Hedland FIFO Opportunities';
+            document.getElementById('linkUrl').value = 'https://example.com/port-hedland-jobs';
+            document.getElementById('indicatorStyle').value = '...';
+            document.getElementById('teaserTitle').value = 'Port Hedland FIFO Roles 2024';
+
+            // Tab 1 - Overview
+            document.getElementById('tab1Title').value = 'Overview';
+            document.getElementById('tab1Content').value = `• Multiple FIFO positions available
 • 2/1 roster with competitive rates
 • Immediate start available
-• Extended contracts with possibility of permanent roles
-• Full accommodation and meals provided`;
+• Extended contracts with possibility of permanent roles`;
 
-    // Tab 2 - Requirements
-    document.getElementById('tab2Title').value = 'Requirements';
-    document.getElementById('tab2Content').value = `• Trade qualification
+            // Tab 2 - Requirements
+            document.getElementById('tab2Title').value = 'Requirements';
+            document.getElementById('tab2Content').value = `• Trade qualification
 • Current HR drivers license
 • Mining medical and drug screen
-• Confined space and working at heights tickets
-• Minimum 2 years mining experience
-• Strong safety focus`;
+• Minimum 2 years mining experience`;
 
-    // Tab 3 - Benefits
-    document.getElementById('tab3Title').value = 'Benefits';
-    document.getElementById('tab3Content').value = `• Above-award rates ($65-$75/hr)
+            // Tab 3 - Benefits
+            document.getElementById('tab3Title').value = 'Benefits';
+            document.getElementById('tab3Content').value = `• Above-award rates ($65-$75/hr)
 • Travel allowance included
 • Comprehensive medical coverage
-• Performance bonuses
-• Career development opportunities
-• Employee assistance program`;
+• Performance bonuses`;
 
-    // Tab 4 - How to Apply
-    document.getElementById('tab4Title').value = 'How to Apply';
-    document.getElementById('tab4Content').value = `Submit your application:
+            // Tab 4 - How to Apply
+            document.getElementById('tab4Title').value = 'How to Apply';
+            document.getElementById('tab4Content').value = `Submit your application:
 Email: recruitment@example.com
-Reference: PH2024-FIFO
+Reference: PH2024-FIFO`;
 
-Include:
-• Updated resume
-• Copies of qualifications
-• Current tickets and certifications`;
+            // Trigger form submission to update preview
+            generatePreview();
+        }
 
-    // Trigger form submission to update preview
-    document.getElementById('teaserForm').dispatchEvent(new Event('submit'));
-}
+        function clearForm() {
+            document.getElementById('teaserForm').reset();
+            document.getElementById('previewArea').innerHTML = 'Your teaser will appear here...';
+            document.getElementById('codeOutput').textContent = 'Code will appear here...';
+        }
 
-// Add button click handler
-document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('prefillButton').addEventListener('click', prefillForm);
-});
-</script>
+        function generatePreview() {
+            const linkText = document.getElementById('linkText').value;
+            const linkUrl = document.getElementById('linkUrl').value;
+            const indicator = document.getElementById('indicatorStyle').value;
+            const teaserTitle = document.getElementById('teaserTitle').value;
 
-<!-- Add this button to the form section -->
-<div style="margin-bottom: 20px;">
-    <button type="button" id="prefillButton" style="background: #4CAF50;">
-        Load Example Content
-    </button>
-</div>
+            // Generate preview HTML
+            const previewHtml = `
+                <a href="${linkUrl}" style="color: #0066cc; text-decoration: none;">${linkText}</a>
+                <span style="color: #0066cc; cursor: pointer;">${indicator}</span>
+            `;
 
+            // Generate code output
+            const codeHtml = `<!-- Link with Teaser -->
+<a href="${linkUrl}">${linkText}</a>
+<span class="gl">${indicator}</span>
+
+<!-- Teaser Content -->
+<div id="teaser-${linkText.toLowerCase().replace(/[^a-z0-9]/g, '-')}" class="gl-teaser">
+    <div class="gl-header">
+        <h3>${teaserTitle}</h3>
+        <button class="gl-close">&times;</button>
+    </div>
+    <div class="gl-tabs">
+        <button class="gl-tab active">${document.getElementById('tab1Title').value}</button>
+        ${document.getElementById('tab2Title').value ? `<button class="gl-tab">${document.getElementById('tab2Title').value}</button>` : ''}
+        ${document.getElementById('tab3Title').value ? `<button class="gl-tab">${document.getElementById('tab3Title').value}</button>` : ''}
+        ${document.getElementById('tab4Title').value ? `<button class="gl-tab">${document.getElementById('tab4Title').value}</button>` : ''}
+    </div>
+    <div class="gl-content">
+        <div class="tab-content active">
+            ${document.getElementById('tab1Content').value.replace(/\n/g, '<br>')}
+        </div>
+        ${document.getElementById('tab2Content').value ? `<div class="tab-content">${document.getElementById('tab2Content').value.replace(/\n/g, '<br>')}</div>` : ''}
+        ${document.getElementById('tab3Content').value ? `<div class="tab-content">${document.getElementById('tab3Content').value.replace(/\n/g, '<br>')}</div>` : ''}
+        ${document.getElementById('tab4Content').value ? `<div class="tab-content">${document.getElementById('tab4Content').value.replace(/\n/g, '<br>')}</div>` : ''}
+    </div>
+</div>`;
+
+            document.getElementById('previewArea').innerHTML = previewHtml;
+            document.getElementById('codeOutput').textContent = codeHtml;
+        }
+
+        document.getElementById('teaserForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            generatePreview();
+        });
+    </script>
 </body>
 </html>
 
