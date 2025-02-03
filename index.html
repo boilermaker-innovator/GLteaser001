@@ -1,5 +1,181 @@
+here i have asked for a few suggestions
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preview Indicator Options</title>
+    <style>
+        body {
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f0f2f5;
+            line-height: 1.6;
+        }
 
+        .document {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
 
+        .option-group {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+        }
+
+        .option-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .example {
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+
+        /* Link Styles */
+        .link {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        /* Preview Indicator Styles */
+        .preview-basic {
+            color: #0066cc;
+            font-size: 0.85em;
+            margin-left: 4px;
+            cursor: pointer;
+        }
+
+        .preview-icon {
+            color: #0066cc;
+            font-size: 0.85em;
+            margin-left: 4px;
+            cursor: pointer;
+        }
+
+        .preview-modern {
+            color: #0066cc;
+            font-size: 0.75em;
+            margin-left: 4px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .preview-subtle {
+            color: #666;
+            font-size: 0.8em;
+            margin-left: 4px;
+            cursor: pointer;
+            font-style: italic;
+        }
+
+        .preview-minimal {
+            color: #0066cc;
+            font-size: 1em;
+            margin-left: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="document">
+        <h1>Preview Indicator Options</h1>
+        
+        <div class="option-group">
+            <div class="option-title">Option 1: Technical Style</div>
+            <div class="example">
+                <a href="#" class="link">Port Hedland Processing Facility</a>
+                <span class="preview-basic">GL</span>
+            </div>
+            <div class="example">
+                <a href="#" class="link">Port Hedland Processing Facility</a>
+                <span class="preview-basic">Quick</span>
+            </div>
+            <div class="example">
+                <a href="#" class="link">Port Hedland Processing Facility</a>
+                <span class="preview-basic">Preview</span>
+            </div>
+        </div>
+
+        <div class="option-group">
+            <div class="option-title">Option 2: Icon Style</div>
+            <div class="example">
+                <a href="#" class="link">Port Hedland Processing Facility</a>
+                <span class="preview-icon">👁️</span>
+            </div>
+            <div class="example">
+                <a href="#" class="link">Port Hedland Processing Facility</a>
+                <span class="preview-icon">ℹ️</span>
+            </div>
+            <div class="example">
+                <a href="#" class="link">Port Hedland Processing Facility</a>
+                <span class="preview-icon">↗️</span>
+            </div>
+        </div>
+
+        <div class="option-group">
+            <div class="option-title">Option 3: Modern Style</div>
+            <div class="example">
+                <a href="#" class="link">Port Hedland Processing Facility</a>
+                <span class="preview-modern">peek</span>
+            </div>
+            <div class="example">
+                <a href="#" class="link">Port Hedland Processing Facility</a>
+                <span class="preview-modern">snap</span>
+            </div>
+            <div class="example">
+                <a href="#" class="link">Port Hedland Processing Facility</a>
+                <span class="preview-modern">view</span>
+            </div>
+        </div>
+
+        <div class="option-group">
+            <div class="option-title">Option 4: Subtle Style</div>
+            <div class="example">
+                <a href="#" class="link">Port Hedland Processing Facility</a>
+                <span class="preview-subtle">(quick view)</span>
+            </div>
+            <div class="example">
+                <a href="#" class="link">Port Hedland Processing Facility</a>
+                <span class="preview-subtle">(preview)</span>
+            </div>
+            <div class="example">
+                <a href="#" class="link">Port Hedland Processing Facility</a>
+                <span class="preview-subtle">(highlights)</span>
+            </div>
+        </div>
+
+        <div class="option-group">
+            <div class="option-title">Option 5: Minimal Style</div>
+            <div class="example">
+                <a href="#" class="link">Port Hedland Processing Facility</a>
+                <span class="preview-minimal">•••</span>
+            </div>
+            <div class="example">
+                <a href="#" class="link">Port Hedland Processing Facility</a>
+                <span class="preview-minimal">+</span>
+            </div>
+            <div class="example">
+                <a href="#" class="link">Port Hedland Processing Facility</a>
+                <span class="preview-minimal">▾</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+links still work GL links to teaser staying on the page
 <!DOCTYPE html>
 <html lang="en">
 <head>
