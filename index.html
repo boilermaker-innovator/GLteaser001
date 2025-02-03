@@ -1,3 +1,115 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document with Separated Link and GL Functions</title>
+    <style>
+        body {
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f0f2f5;
+            line-height: 1.6;
+        }
+
+        .document {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Normal link style */
+        .link {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .link:hover {
+            text-decoration: underline;
+        }
+
+        /* GL trigger style */
+        .gl {
+            color: #0066cc;
+            font-size: 0.85em;
+            margin-left: 4px;
+            cursor: pointer;
+        }
+
+        .gl:hover {
+            text-decoration: underline;
+        }
+
+        /* Rest of your teaser styles... */
+    </style>
+</head>
+<body>
+    <div class="document">
+        <h1>Western Australia Mining Projects Update</h1>
+
+        <h2>Current Projects</h2>
+        <p>Our expansion in the Pilbara region continues with the new 
+        <a href="https://example.com/port-hedland" class="link">Port Hedland Processing Facility</a>
+        <span class="gl" data-gl="project1">GL</span> showing excellent progress. The 
+        <a href="https://example.com/karratha" class="link">Karratha Maintenance Hub</a>
+        <span class="gl" data-gl="project2">GL</span> is now fully operational.</p>
+
+        <h2>Workforce Development</h2>
+        <p>We're implementing new training programs through our 
+        <a href="https://example.com/skills" class="link">Skills Development Initiative</a>
+        <span class="gl" data-gl="project3">GL</span>. This complements our existing 
+        <a href="https://example.com/apprentice" class="link">Apprenticeship Program</a>
+        <span class="gl" data-gl="project4">GL</span> which has seen great success.</p>
+    </div>
+
+    <!-- Teasers remain the same -->
+    <div class="gl-overlay"></div>
+
+    <div id="project1" class="gl-teaser">
+        <div class="gl-header">
+            <h3>Port Hedland Facility Details</h3>
+            <button class="gl-close">&times;</button>
+        </div>
+        <div class="gl-tabs">
+            <button class="gl-tab active">Overview</button>
+            <button class="gl-tab">Timeline</button>
+            <button class="gl-tab">Equipment</button>
+            <button class="gl-tab">Jobs</button>
+        </div>
+        <div class="gl-content">
+            <p>Quick preview of the Port Hedland facility details and current status.</p>
+        </div>
+    </div>
+
+    <!-- Other teasers... -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const overlay = document.querySelector('.gl-overlay');
+
+            // Only attach to GL spans now, not the whole link
+            document.querySelectorAll('.gl').forEach(glTrigger => {
+                glTrigger.addEventListener('click', (e) => {
+                    e.preventDefault(); // Prevent any bubble-up
+                    const teaserId = glTrigger.getAttribute('data-gl');
+                    const teaser = document.getElementById(teaserId);
+                    
+                    overlay.classList.add('active');
+                    teaser.classList.add('active');
+                });
+            });
+
+            // Rest of your teaser handling code...
+        });
+    </script>
+</body>
+</html>
 try again just blue text
 <!DOCTYPE html>
 <html lang="en">
