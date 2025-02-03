@@ -3,6 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document with Simple GL Indicators</title>
+    <style>
+        /* Base styles remain the same */
+        body {
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f0f2f5;
+            line-height: 1.6;
+        }
+
+        .document {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Updated GL Link styles */
+        .gl-link {
+            color: #0066cc;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .gl-badge {
+            color: #0066cc;
+            font-size: 12px;
+            margin-left: 4px;
+            font-weight: 500;
+        }
+
+        /* External link style */
+        .external-link {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .external-link:after {
+            content: '↗';
+            display: inline-block;
+            margin-left: 4px;
+        }
+
+        /* Rest of your existing styles... */
+    </style>
+</head>
+<body>
+    <div class="document">
+        <h1>Western Australia Mining Projects Update</h1>
+
+        <h2>Current Projects</h2>
+        <p>Our expansion in the Pilbara region continues with the new <span class="gl-link" data-gl="project1">Port Hedland Processing Facility<span class="gl-badge">GL</span></span> 
+        showing excellent progress. For technical details, visit our <a href="#" class="external-link">documentation portal</a>. The 
+        <span class="gl-link" data-gl="project2">Karratha Maintenance Hub<span class="gl-badge">GL</span></span> is now fully operational.</p>
+
+        <h2>Workforce Development</h2>
+        <p>We're implementing new training programs through our <span class="gl-link" data-gl="project3">Skills Development Initiative<span class="gl-badge">GL</span></span>. 
+        This complements our existing <span class="gl-link" data-gl="project4">Apprenticeship Program<span class="gl-badge">GL</span></span> which has seen great success.</p>
+
+        <h2>Future Plans</h2>
+        <p>Looking ahead to 2024, we're focusing on sustainable practices and efficiency improvements across all operations. 
+        Read our <a href="#" class="external-link">sustainability report</a> for more details.</p>
+    </div>
+
+    <!-- Rest of your teaser code remains the same -->
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creating GL Teasers Guide</title>
     <style>
         /* Base styles */
