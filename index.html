@@ -1,4 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document with GL Indicators</title>
+    <style>
+        /* ... Previous styles remain the same ... */
+        
+        /* New styles for GL indicator */
+        .gl-link {
+            color: #0066cc;
+            text-decoration: none;
+            cursor: pointer;
+            position: relative;
+            margin-right: 4px;
+        }
 
+        .gl-badge {
+            display: inline-flex;
+            align-items: center;
+            background: #0066cc;
+            color: white;
+            font-size: 12px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-left: 4px;
+            font-weight: 500;
+            vertical-align: middle;
+        }
+
+        /* External link style */
+        .external-link {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .external-link:after {
+            content: '↗';
+            display: inline-block;
+            margin-left: 4px;
+        }
+
+        /* Rest of previous styles... */
+    </style>
+</head>
+<body>
+    <div class="document">
+        <h1>Western Australia Mining Projects Update</h1>
+
+        <h2>Current Projects</h2>
+        <p>Our expansion in the Pilbara region continues with the new <span class="gl-link" data-gl="project1">Port Hedland Processing Facility<span class="gl-badge">GL</span></span> 
+        showing excellent progress. For detailed specifications, visit our <a href="#" class="external-link">technical documentation</a>. The 
+        <span class="gl-link" data-gl="project2">Karratha Maintenance Hub<span class="gl-badge">GL</span></span> is now fully operational.</p>
+
+        <h2>Workforce Development</h2>
+        <p>We're implementing new training programs through our <span class="gl-link" data-gl="project3">Skills Development Initiative<span class="gl-badge">GL</span></span>. 
+        Check out our <a href="#" class="external-link">careers portal</a> for current opportunities. This complements our existing 
+        <span class="gl-link" data-gl="project4">Apprenticeship Program<span class="gl-badge">GL</span></span> which has seen great success.</p>
+
+        <h2>Future Plans</h2>
+        <p>Looking ahead to 2024, we're focusing on sustainable practices and efficiency improvements. Read our 
+        <a href="#" class="external-link">sustainability report</a> for more details. For upcoming projects, check our 
+        <a href="#" class="external-link">project pipeline</a>.</p>
+
+        <h2>Community Engagement</h2>
+        <p>Learn more about our <span class="gl-link" data-gl="project5">Community Support Programs<span class="gl-badge">GL</span></span> 
+        and how we're working with local groups. Visit our <a href="#" class="external-link">community portal</a> to get involved.</p>
+    </div>
+
+    <!-- Overlay and Teasers remain the same as before -->
+    <div class="gl-overlay"></div>
+
+    <!-- Example of one teaser (others follow same pattern) -->
+    <div id="project1" class="gl-teaser">
+        <div class="gl-header">
+            <h3>Port Hedland Processing Facility</h3>
+            <button class="gl-close">&times;</button>
+        </div>
+        <div class="gl-tabs">
+            <button class="gl-tab active">Overview</button>
+            <button class="gl-tab">Timeline</button>
+            <button class="gl-tab">Equipment</button>
+            <button class="gl-tab">Jobs</button>
+        </div>
+        <div class="gl-content">
+            <p>State-of-the-art processing facility with advanced automation and environmental controls.</p>
+        </div>
+    </div>
+
+    <!-- Add other teasers as before... -->
+
+    <script>
+        // Previous JavaScript remains the same
+    </script>
+</body>
+</html>
+
+whithout GL
 <!DOCTYPE html>
 <html lang="en">
 <head>
