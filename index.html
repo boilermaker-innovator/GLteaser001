@@ -1,3 +1,201 @@
+
+
+try again... 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functional GL Creator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #f0f8ff;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .paste-area {
+            border: 2px dashed #0077B5;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            cursor: text;
+        }
+        .preview-area {
+            display: none;
+            margin-top: 20px;
+        }
+        .gl-link {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+        .gl-badge {
+            background: #0077B5;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-left: 10px;
+            font-size: 14px;
+        }
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .tab {
+            padding: 8px 15px;
+            background: #f8f9fa;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .tab.active {
+            background: #0077B5;
+            color: white;
+        }
+        .content-editor {
+            margin-bottom: 15px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        .preview-button {
+            background: #0077B5;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .teaser {
+            display: none;
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="paste-area" id="pasteArea">
+            <h2>Paste URL to Create GL</h2>
+            <p>Click here and paste any URL</p>
+        </div>
+
+        <div class="preview-area" id="previewArea">
+            <div class="gl-link">
+                <a href="" id="pastedLink" target="_blank"></a>
+                <span class="gl-badge">GL</span>
+            </div>
+
+            <div class="content-editor">
+                <input type="text" id="titleInput" placeholder="Enter title">
+                
+                <div class="tabs">
+                    <button class="tab active" data-tab="about">About</button>
+                    <button class="tab" data-tab="details">Details</button>
+                    <button class="tab" data-tab="more">More</button>
+                </div>
+
+                <textarea id="contentInput" placeholder="Enter content for this tab"></textarea>
+            </div>
+
+            <button class="preview-button" id="previewButton">Create GL Preview</button>
+        </div>
+
+        <div class="teaser" id="teaserPreview">
+            <h2 id="previewTitle"></h2>
+            <div id="previewContent"></div>
+            <button class="preview-button" onclick="backToEditor()">Back to Editor</button>
+        </div>
+    </div>
+
+    <script>
+        // Initialize content storage
+        let tabContents = {
+            about: '',
+            details: '',
+            more: ''
+        };
+        let currentTab = 'about';
+
+        // Event Listeners
+        document.addEventListener('paste', handlePaste);
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => switchTab(tab.dataset.tab));
+        });
+        document.getElementById('contentInput').addEventListener('input', updateContent);
+        document.getElementById('previewButton').addEventListener('click', showPreview);
+
+        // Handle URL paste
+        function handlePaste(e) {
+            const pastedUrl = e.clipboardData.getData('text');
+            document.getElementById('pastedLink').href = pastedUrl;
+            document.getElementById('pastedLink').textContent = pastedUrl;
+            document.getElementById('previewArea').style.display = 'block';
+        }
+
+        // Switch between tabs
+        function switchTab(tabName) {
+            currentTab = tabName;
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.toggle('active', tab.dataset.tab === tabName);
+            });
+            document.getElementById('contentInput').value = tabContents[tabName];
+        }
+
+        // Update content for current tab
+        function updateContent(e) {
+            tabContents[currentTab] = e.target.value;
+        }
+
+        // Show the final preview
+        function showPreview() {
+            const title = document.getElementById('titleInput').value;
+            if (!title) {
+                alert('Please enter a title');
+                return;
+            }
+
+            document.getElementById('previewTitle').textContent = title;
+            document.getElementById('previewContent').innerHTML = tabContents[currentTab];
+            
+            document.getElementById('previewArea').style.display = 'none';
+            document.getElementById('teaserPreview').style.display = 'block';
+        }
+
+        // Go back to editor
+        function backToEditor() {
+            document.getElementById('teaserPreview').style.display = 'none';
+            document.getElementById('previewArea').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
+
+
+not working
 <!DOCTYPE html>
 <html lang="en">
 <head>
