@@ -1,29 +1,177 @@
-// index.html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GL Teaser POC</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>GL Teaser - Touch Version</title>
+    <style>
+        body {
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f0f2f5;
+        }
+
+        .demo-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .gl-link {
+            display: block;
+            background: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #1a1a1a;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .gl-preview-card {
+            background: white;
+            border-radius: 12px;
+            margin: 10px 0;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: none;
+        }
+
+        .gl-preview-card.active {
+            display: block;
+        }
+
+        .gl-header {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .gl-header h3 {
+            margin: 0;
+            color: #1a1a1a;
+        }
+
+        .gl-tabs {
+            display: flex;
+            padding: 10px;
+            gap: 8px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .gl-tab {
+            padding: 8px 16px;
+            background: #f0f2f5;
+            border: none;
+            border-radius: 20px;
+            font-size: 14px;
+            white-space: nowrap;
+            color: #1a1a1a;
+        }
+
+        .gl-tab.active {
+            background: #0066cc;
+            color: white;
+        }
+
+        .gl-content {
+            padding: 15px;
+        }
+
+        .toggle-preview {
+            background: #0066cc;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
     <div class="demo-container">
-        <h1>GL Teaser Demo</h1>
-        <p>Hover over the links below to see GL Teasers in action:</p>
+        <h1>GL Teaser - Touch Demo</h1>
         
-        <div class="demo-links">
-            <a href="#" 
-               data-gl-preview='{"title":"Software Engineer","description":"Join our dynamic team of developers working on cutting-edge technologies.","tabs":["Overview","Requirements","Benefits"]}'>
-               Software Engineer Position
+        <!-- Test Link 1 -->
+        <div class="gl-link-container">
+            <a class="gl-link" href="#">
+                <h3>Boilermaker Position</h3>
+                <p>FIFO role with great benefits</p>
             </a>
-            <br><br>
-            <a href="#" 
-               data-gl-preview='{"title":"Senior Boilermaker","description":"FIFO role with excellent benefits and competitive pay.","tabs":["Overview","Requirements","Benefits"]}'>
-               Senior Boilermaker Role
+            <button class="toggle-preview">Show Preview</button>
+            <div class="gl-preview-card">
+                <div class="gl-header">
+                    <h3>Boilermaker Position</h3>
+                </div>
+                <div class="gl-tabs">
+                    <button class="gl-tab active">Overview</button>
+                    <button class="gl-tab">Requirements</button>
+                    <button class="gl-tab">Benefits</button>
+                </div>
+                <div class="gl-content">
+                    <p>FIFO role with excellent benefits package. 2/1 roster with competitive pay.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Test Link 2 -->
+        <div class="gl-link-container">
+            <a class="gl-link" href="#">
+                <h3>Mechanical Fitter</h3>
+                <p>Perth based position</p>
             </a>
+            <button class="toggle-preview">Show Preview</button>
+            <div class="gl-preview-card">
+                <div class="gl-header">
+                    <h3>Mechanical Fitter</h3>
+                </div>
+                <div class="gl-tabs">
+                    <button class="gl-tab active">Overview</button>
+                    <button class="gl-tab">Details</button>
+                    <button class="gl-tab">Apply</button>
+                </div>
+                <div class="gl-content">
+                    <p>Permanent position in Perth with competitive salary and benefits.</p>
+                </div>
+            </div>
         </div>
     </div>
-    <script src="content.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Handle preview toggles
+            document.querySelectorAll('.toggle-preview').forEach(button => {
+                button.addEventListener('click', () => {
+                    const card = button.nextElementSibling;
+                    const isShowing = card.classList.contains('active');
+                    
+                    // Hide all cards first
+                    document.querySelectorAll('.gl-preview-card').forEach(c => {
+                        c.classList.remove('active');
+                    });
+                    document.querySelectorAll('.toggle-preview').forEach(b => {
+                        b.textContent = 'Show Preview';
+                    });
+
+                    if (!isShowing) {
+                        card.classList.add('active');
+                        button.textContent = 'Hide Preview';
+                    }
+                });
+            });
+
+            // Handle tabs
+            document.querySelectorAll('.gl-tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabGroup = tab.parentElement;
+                    tabGroup.querySelectorAll('.gl-tab').forEach(t => {
+                        t.classList.remove('active');
+                    });
+                    tab.classList.add('active');
+                });
+            });
+        });
+    </script>
 </body>
 </html>
