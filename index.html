@@ -1,3 +1,249 @@
+what about ...?
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mining Innovation in WA</title>
+    <style>
+        body {
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f0f2f5;
+            line-height: 1.6;
+        }
+
+        .article {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #1a1a1a;
+            margin-bottom: 1em;
+        }
+
+        h2 {
+            color: #333;
+            margin-top: 1.5em;
+        }
+
+        p {
+            color: #444;
+            margin-bottom: 1em;
+        }
+
+        /* Link styles */
+        .link {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .teaser-dot {
+            color: #0066cc;
+            cursor: pointer;
+            margin-left: 4px;
+            font-weight: 500;
+        }
+
+        /* Teaser styles */
+        .gl-teaser {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+            width: 90%;
+            max-width: 500px;
+            z-index: 1000;
+            display: none;
+        }
+
+        .gl-teaser.active {
+            display: block;
+        }
+
+        .gl-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            display: none;
+        }
+
+        .gl-overlay.active {
+            display: block;
+        }
+
+        .gl-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .gl-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .gl-tabs {
+            display: flex;
+            padding: 10px;
+            gap: 8px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .gl-tab {
+            padding: 8px 16px;
+            background: #f0f2f5;
+            border: none;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #1a1a1a;
+        }
+
+        .gl-tab.active {
+            background: #0066cc;
+            color: white;
+        }
+
+        .gl-content {
+            padding: 20px;
+            min-height: 150px;
+        }
+    </style>
+</head>
+<body>
+    <div class="article">
+        <h1>Innovation in Western Australian Mining</h1>
+
+        <p>The Western Australian mining sector continues to evolve with groundbreaking innovations in 2024. Leading this transformation is the 
+        <a href="https://example.com/automation" class="link">Automated Haulage System</a><span class="teaser-dot" data-gl="automation">...</span> 
+        at the Port Hedland facility, setting new standards for efficiency and safety.</p>
+
+        <h2>Sustainable Mining Practices</h2>
+        <p>Environmental consciousness is driving change throughout the industry. The recently implemented 
+        <a href="https://example.com/solar" class="link">Solar Integration Project</a><span class="teaser-dot" data-gl="solar">...</span> 
+        demonstrates how renewable energy can power major mining operations. This complements our 
+        <a href="https://example.com/water" class="link">Water Conservation Initiative</a><span class="teaser-dot" data-gl="water">...</span> 
+        which has reduced consumption by 40%.</p>
+
+        <h2>Workforce Development</h2>
+        <p>Investment in people remains crucial. Our 
+        <a href="https://example.com/training" class="link">Digital Skills Program</a><span class="teaser-dot" data-gl="training">...</span> 
+        is preparing workers for the future of mining. The program works alongside our 
+        <a href="https://example.com/indigenous" class="link">Indigenous Employment Strategy</a><span class="teaser-dot" data-gl="indigenous">...</span> 
+        to create diverse, capable teams.</p>
+
+        <h2>Future Outlook</h2>
+        <p>Looking ahead, the 
+        <a href="https://example.com/expansion" class="link">2025 Expansion Plan</a><span class="teaser-dot" data-gl="expansion">...</span> 
+        will further cement Western Australia's position in global mining. Key to this is our 
+        <a href="https://example.com/research" class="link">Research Partnership Program</a><span class="teaser-dot" data-gl="research">...</span> 
+        with leading universities.</p>
+    </div>
+
+    <!-- Overlay -->
+    <div class="gl-overlay"></div>
+
+    <!-- Automation Teaser -->
+    <div id="automation" class="gl-teaser">
+        <div class="gl-header">
+            <h3>Automated Haulage System</h3>
+            <button class="gl-close">&times;</button>
+        </div>
+        <div class="gl-tabs">
+            <button class="gl-tab active">Overview</button>
+            <button class="gl-tab">Stats</button>
+            <button class="gl-tab">Impact</button>
+            <button class="gl-tab">Future</button>
+        </div>
+        <div class="gl-content">
+            <p>Fleet of 50 autonomous trucks operating 24/7, reducing operational costs by 35% and improving safety metrics by 60%.</p>
+        </div>
+    </div>
+
+    <!-- Solar Teaser -->
+    <div id="solar" class="gl-teaser">
+        <div class="gl-header">
+            <h3>Solar Integration Project</h3>
+            <button class="gl-close">&times;</button>
+        </div>
+        <div class="gl-tabs">
+            <button class="gl-tab active">Overview</button>
+            <button class="gl-tab">Data</button>
+            <button class="gl-tab">Benefits</button>
+            <button class="gl-tab">Timeline</button>
+        </div>
+        <div class="gl-content">
+            <p>100MW solar farm powering mining operations, reducing carbon emissions by 85,000 tonnes annually.</p>
+        </div>
+    </div>
+
+    <!-- Add other teasers similarly -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const overlay = document.querySelector('.gl-overlay');
+
+            // Handle teaser dots
+            document.querySelectorAll('.teaser-dot').forEach(dot => {
+                dot.addEventListener('click', () => {
+                    const teaserId = dot.getAttribute('data-gl');
+                    const teaser = document.getElementById(teaserId);
+                    
+                    overlay.classList.add('active');
+                    teaser.classList.add('active');
+                });
+            });
+
+            // Handle close buttons
+            document.querySelectorAll('.gl-close').forEach(button => {
+                button.addEventListener('click', () => {
+                    overlay.classList.remove('active');
+                    document.querySelectorAll('.gl-teaser').forEach(teaser => {
+                        teaser.classList.remove('active');
+                    });
+                });
+            });
+
+            // Handle overlay clicks
+            overlay.addEventListener('click', () => {
+                overlay.classList.remove('active');
+                document.querySelectorAll('.gl-teaser').forEach(teaser => {
+                    teaser.classList.remove('active');
+                });
+            });
+
+            // Handle tabs
+            document.querySelectorAll('.gl-tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabGroup = tab.parentElement;
+                    tabGroup.querySelectorAll('.gl-tab').forEach(t => {
+                        t.classList.remove('active');
+                    });
+                    tab.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
 here i have asked for a few suggestions
 <!DOCTYPE html>
 <html lang="en">
