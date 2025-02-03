@@ -1,6 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple GL Creator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #f0f8ff;
+        }
+        .paste-box {
+            border: 2px dashed #0077B5;
+            padding: 20px;
+            text-align: center;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .preview-container {
+            display: none;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .link-display {
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+        .gl-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            background: #0077B5;
+            color: white;
+            border-radius: 4px;
+            margin-left: 10px;
+            font-size: 14px;
+        }
+        .quick-edit {
+            margin-top: 20px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .tab-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .tab {
+            padding: 8px 15px;
+            background: #f8f9fa;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .tab.active {
+            background: #0077B5;
+            color: white;
+        }
+        .preview-button {
+            background: #0077B5;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="paste-box" id="pasteBox">
+        <h2>Paste URL to Create GL</h2>
+        <p>Paste any URL to create a GL preview</p>
+    </div>
 
+    <div class="preview-container" id="previewContainer">
+        <div class="link-display">
+            <a href="#" id="pastedLink">Link will appear here</a>
+            <span class="gl-badge">GL</span>
+        </div>
+        
+        <div class="quick-edit">
+            <input type="text" id="titleInput" placeholder="Enter title">
+            
+            <div class="tab-container">
+                <button class="tab active">About</button>
+                <button class="tab">Details</button>
+                <button class="tab">More</button>
+            </div>
+            
+            <textarea placeholder="Enter preview content..." rows="4"></textarea>
+            
+            <button class="preview-button">Show GL Preview</button>
+        </div>
+    </div>
 
-
+    <script>
+        document.addEventListener('paste', function(e) {
+            e.preventDefault();
+            const pastedUrl = e.clipboardData.getData('text');
+            
+            // Update link
+            document.getElementById('pastedLink').href = pastedUrl;
+            document.getElementById('pastedLink').textContent = pastedUrl;
+            
+            // Show preview container
+            document.getElementById('previewContainer').style.display = 'block';
+            
+            // Auto-focus title input
+            document.getElementById('titleInput').focus();
+        });
+    </script>
+</body>
+</html>
 
 
 <!DOCTYPE html>
