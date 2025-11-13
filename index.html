@@ -233,6 +233,15 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        @media (max-width: 600px) {
+            .generator-content {
+                padding: 24px;
+            }
+            .generator-header h1 {
+                font-size: 24px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -336,7 +345,7 @@
         async function generateContent(apiKey) {
             const url = 'https://itabs.ai';
             
-            const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + apiKey, {
+            const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=' + apiKey, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -353,6 +362,9 @@
             if (!response.ok) {
                 if (response.status === 400) {
                     throw new Error('Invalid API key. Please check your key and try again.');
+                }
+                if (response.status === 404) {
+                    throw new Error('API endpoint not found. Please contact support.');
                 }
                 throw new Error('Failed to connect to Gemini API. Status: ' + response.status);
             }
