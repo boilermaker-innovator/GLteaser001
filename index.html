@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iTabs Generator - Instant Demo</title>
+    <title>iTabs Generator - AI Powered</title>
     <style>
         * {
             margin: 0;
@@ -50,8 +50,8 @@
         }
 
         .info-box {
-            background: #e8f5e9;
-            border-left: 4px solid #4caf50;
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
             padding: 16px;
             border-radius: 8px;
             margin-bottom: 24px;
@@ -59,15 +59,19 @@
 
         .info-box-title {
             font-weight: 600;
-            color: #2e7d32;
+            color: #856404;
             margin-bottom: 8px;
-            font-size: 18px;
         }
 
         .info-box-text {
             font-size: 14px;
-            color: #2e7d32;
+            color: #856404;
             line-height: 1.6;
+        }
+
+        .info-box a {
+            color: #856404;
+            text-decoration: underline;
         }
 
         .form-section {
@@ -99,11 +103,6 @@
             font-family: inherit;
         }
 
-        .form-textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-
         .form-input:focus, .form-textarea:focus {
             outline: none;
             border-color: #2b7ac9;
@@ -126,6 +125,12 @@
         .generate-button:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(43, 122, 201, 0.4);
+        }
+
+        .generate-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
         }
 
         .preview-container {
@@ -191,6 +196,45 @@
             display: block;
         }
 
+        .error-message {
+            background: #ffebee;
+            border-left: 4px solid #f44336;
+            padding: 16px;
+            border-radius: 8px;
+            color: #c62828;
+            margin-top: 16px;
+            display: none;
+        }
+
+        .error-message.active {
+            display: block;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            display: none;
+        }
+
+        .loading.active {
+            display: block;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #2b7ac9;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 12px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         @media (max-width: 600px) {
             .generator-content {
                 padding: 24px;
@@ -204,69 +248,59 @@
 <body>
     <div class="generator-container">
         <div class="generator-header">
-            <h1>iTabs Generator</h1>
-            <p>Create your interactive demo in seconds - No API needed!</p>
+            <h1>iTabs AI Generator</h1>
+            <p>Paste your API key and let AI create your demo!</p>
         </div>
 
         <div class="generator-content">
             <div class="info-box">
-                <div class="info-box-title">✅ Instant Generation</div>
+                <div class="info-box-title">⚡ AI-Powered Generation</div>
                 <div class="info-box-text">
-                    Fill in your content below and click Generate. Your interactive iTabs demo will appear instantly - no waiting, no API keys needed!
+                    Paste your Gemini API key below and AI will automatically generate engaging iTabs content for you! Get your free API key at <a href="https://aistudio.google.com/app/apikey" target="_blank">Google AI Studio</a>
                 </div>
             </div>
 
             <form id="demoForm">
                 <div class="form-section">
-                    <label class="form-label" for="overlayText">Overlay Text</label>
-                    <span class="form-help">Short, catchy text that appears on the image (5-7 words)</span>
+                    <label class="form-label" for="apiKey">Your Gemini API Key</label>
+                    <span class="form-help">Get your free API key at <a href="https://aistudio.google.com/app/apikey" target="_blank">aistudio.google.com</a></span>
                     <input 
                         type="text" 
-                        id="overlayText" 
+                        id="apiKey" 
                         class="form-input"
-                        placeholder="Discover what iTabs can do ℹ️"
-                        value="Discover what iTabs can do ℹ️"
+                        placeholder="AIza..."
                         required
                     >
                 </div>
 
                 <div class="form-section">
-                    <label class="form-label" for="popupTitle">Popup Title</label>
-                    <span class="form-help">The heading that appears when someone clicks the "i" button (3-5 words)</span>
+                    <label class="form-label" for="urlInput">Your Website or Campaign URL</label>
+                    <span class="form-help">AI will analyze this URL to create relevant iTabs content</span>
                     <input 
-                        type="text" 
-                        id="popupTitle" 
+                        type="url" 
+                        id="urlInput" 
                         class="form-input"
-                        placeholder="What is iTabs?"
-                        value="What is iTabs?"
+                        placeholder="https://your-website.com"
+                        value="https://itabs.ai"
                         required
                     >
                 </div>
 
-                <div class="form-section">
-                    <label class="form-label" for="popupContent">Popup Content</label>
-                    <span class="form-help">The detailed explanation that appears in the popup (2-3 paragraphs)</span>
-                    <textarea 
-                        id="popupContent" 
-                        class="form-textarea"
-                        placeholder="Write your explanation here..."
-                        required
-                    >iTabs is an innovative system that transforms confusing product codes and complex content into instantly understandable explanations through clickable blue "i" buttons.
-
-When customers see a confusing product code or need more information, they simply click the blue "i" button. A beautiful popup appears with clear, helpful information that helps them understand exactly what they're looking at.
-
-Perfect for e-commerce, crowdfunding campaigns, technical documentation, or any situation where people need quick, accessible information without leaving the page.</textarea>
-                </div>
-
-                <button type="submit" class="generate-button">
-                    🚀 Generate My iTabs Demo
+                <button type="submit" class="generate-button" id="generateBtn">
+                    🚀 Generate with AI
                 </button>
             </form>
 
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>AI is creating your iTabs content...</p>
+            </div>
+
             <div class="success-message" id="successMessage"></div>
+            <div class="error-message" id="errorMessage"></div>
 
             <div class="preview-container" id="previewContainer">
-                <h2 class="section-heading">✨ Your Generated iTabs Demo</h2>
+                <h2 class="section-heading">✨ Your AI-Generated iTabs</h2>
                 <iframe id="previewFrame" class="preview-frame"></iframe>
                 <div class="button-group">
                     <button type="button" class="button-primary" id="downloadBtn">
@@ -285,39 +319,107 @@ Perfect for e-commerce, crowdfunding campaigns, technical documentation, or any 
 
         let generatedHTML = null;
 
-        document.getElementById('demoForm').addEventListener('submit', function(e) {
+        document.getElementById('demoForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            handleGenerate();
+            await handleGenerate();
         });
 
         document.getElementById('downloadBtn').addEventListener('click', downloadDemo);
         document.getElementById('copyBtn').addEventListener('click', copyToClipboard);
 
-        function handleGenerate() {
-            const overlayText = document.getElementById('overlayText').value.trim();
-            const popupTitle = document.getElementById('popupTitle').value.trim();
-            const popupContent = document.getElementById('popupContent').value.trim();
-
-            if (!overlayText || !popupTitle || !popupContent) {
-                alert('Please fill in all fields');
+        async function handleGenerate() {
+            const apiKey = document.getElementById('apiKey').value.trim();
+            const url = document.getElementById('urlInput').value.trim();
+            
+            if (!apiKey || !url) {
+                showError('Please fill in all fields');
                 return;
             }
 
-            const content = {
-                overlayText: overlayText,
-                popupTitle: popupTitle,
-                popupContent: popupContent.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>')
-            };
+            document.getElementById('generateBtn').disabled = true;
+            document.getElementById('loading').classList.add('active');
+            document.getElementById('errorMessage').classList.remove('active');
+            document.getElementById('successMessage').classList.remove('active');
 
-            if (!content.popupContent.startsWith('<p>')) {
-                content.popupContent = '<p>' + content.popupContent + '</p>';
+            try {
+                const content = await generateWithAI(apiKey, url);
+                generatedHTML = generateHTML(content);
+                displayPreview(generatedHTML);
+                showSuccess('✅ AI generated your iTabs! Click the blue "i" to test it.');
+                document.getElementById('previewContainer').classList.add('active');
+                document.getElementById('previewContainer').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } catch (error) {
+                showError('Error: ' + error.message);
+            } finally {
+                document.getElementById('generateBtn').disabled = false;
+                document.getElementById('loading').classList.remove('active');
+            }
+        }
+
+        async function generateWithAI(apiKey, url) {
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`;
+            
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    contents: [{
+                        parts: [{
+                            text: `Analyze this URL: ${url}
+
+Create iTabs content with these exact fields:
+
+1. OVERLAY_TEXT: A short, compelling text (5-7 words max) that would appear on an image to make people want to click an info button. Include the ℹ️ emoji at the end. Make it curiosity-driven.
+
+2. POPUP_TITLE: A clear question or statement (3-5 words) that would be the heading of the popup explanation.
+
+3. POPUP_CONTENT: A detailed but concise explanation (2-3 paragraphs) about the content. Write in simple HTML with <p> tags for paragraphs. Make it informative and engaging.
+
+Format your response EXACTLY like this:
+OVERLAY_TEXT: [your text here]
+POPUP_TITLE: [your title here]
+POPUP_CONTENT: [your content here with HTML tags]`
+                        }]
+                    }],
+                    generationConfig: {
+                        temperature: 0.7,
+                        maxOutputTokens: 1024
+                    }
+                })
+            });
+
+            if (!response.ok) {
+                const errorData = await response.text();
+                console.error('API Error:', errorData);
+                
+                if (response.status === 400) {
+                    throw new Error('Invalid API key. Make sure it starts with "AIza" and is enabled for Gemini API.');
+                }
+                if (response.status === 404) {
+                    throw new Error('API not found. Your API key may need Gemini API enabled at console.cloud.google.com');
+                }
+                throw new Error(`API Error ${response.status}. Check console for details.`);
             }
 
-            generatedHTML = generateHTML(content);
-            displayPreview(generatedHTML);
-            showSuccess('✅ Your iTabs demo is ready! Click the blue "i" button to test it.');
-            document.getElementById('previewContainer').classList.add('active');
-            document.getElementById('previewContainer').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            const data = await response.json();
+            
+            if (!data.candidates || !data.candidates[0]) {
+                throw new Error('No response from AI. Please try again.');
+            }
+            
+            const generatedText = data.candidates[0].content.parts[0].text;
+            
+            const overlayMatch = generatedText.match(/OVERLAY_TEXT:\s*(.+?)(?=\nPOPUP_TITLE:|$)/s);
+            const titleMatch = generatedText.match(/POPUP_TITLE:\s*(.+?)(?=\nPOPUP_CONTENT:|$)/s);
+            const contentMatch = generatedText.match(/POPUP_CONTENT:\s*(.+?)$/s);
+            
+            return {
+                overlayText: overlayMatch ? overlayMatch[1].trim() : 'Discover more ℹ️',
+                popupTitle: titleMatch ? titleMatch[1].trim() : 'Learn More',
+                popupContent: contentMatch ? contentMatch[1].trim() : '<p>Interactive information system.</p>'
+            };
         }
 
         function displayPreview(html) {
@@ -534,7 +636,7 @@ Perfect for e-commerce, crowdfunding campaigns, technical documentation, or any 
 
         function downloadDemo() {
             if (!generatedHTML) {
-                alert('Please generate your demo first');
+                showError('Please generate your demo first');
                 return;
             }
 
@@ -552,14 +654,14 @@ Perfect for e-commerce, crowdfunding campaigns, technical documentation, or any 
 
         function copyToClipboard() {
             if (!generatedHTML) {
-                alert('Please generate your demo first');
+                showError('Please generate your demo first');
                 return;
             }
 
             navigator.clipboard.writeText(generatedHTML).then(function() {
                 showSuccess('✅ HTML code copied to clipboard!');
             }).catch(function() {
-                alert('Could not copy to clipboard. Please try the download button instead.');
+                showError('Could not copy. Try the download button instead.');
             });
         }
 
@@ -570,6 +672,12 @@ Perfect for e-commerce, crowdfunding campaigns, technical documentation, or any 
             setTimeout(function() {
                 div.classList.remove('active');
             }, 5000);
+        }
+
+        function showError(message) {
+            const div = document.getElementById('errorMessage');
+            div.textContent = message;
+            div.classList.add('active');
         }
     </script>
 </body>
