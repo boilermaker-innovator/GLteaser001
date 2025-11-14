@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iTabs Generator - AI Powered</title>
+    <title>iTabs Generator - FREE AI DEMO</title>
     <style>
         * {
             margin: 0;
@@ -13,196 +12,365 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-            background: linear-gradient(135deg, #1e5a9e 0%, #2b7ac9 100%);
-            min-height: 100vh;
+            font-family: Arial, sans-serif;
             padding: 20px;
-        }
-
-        .generator-container {
+            background: #f5f5f5;
             max-width: 800px;
             margin: 0 auto;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            overflow: hidden;
         }
-
-        .generator-header {
-            background: linear-gradient(135deg, #1e5a9e 0%, #2b7ac9 100%);
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .demo-badge {
+            background: #FF9800;
             color: white;
-            padding: 32px;
-            text-align: center;
-        }
-
-        .generator-header h1 {
-            font-size: 32px;
-            margin-bottom: 8px;
-        }
-
-        .generator-header p {
-            font-size: 16px;
-            opacity: 0.9;
-        }
-
-        .generator-content {
-            padding: 40px;
-        }
-
-        .info-box {
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 16px;
-            border-radius: 8px;
-            margin-bottom: 24px;
-        }
-
-        .info-box-title {
-            font-weight: 600;
-            color: #856404;
-            margin-bottom: 8px;
-        }
-
-        .info-box-text {
-            font-size: 14px;
-            color: #856404;
-            line-height: 1.6;
-        }
-
-        .info-box a {
-            color: #856404;
-            text-decoration: underline;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 10px;
         }
 
         .form-section {
-            margin-bottom: 24px;
-        }
-
-        .form-label {
-            display: block;
-            font-size: 16px;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 8px;
-        }
-
-        .form-help {
-            display: block;
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 12px;
-        }
-
-        .form-input, .form-textarea {
-            width: 100%;
-            padding: 14px 16px;
-            font-size: 16px;
-            border: 2px solid #e0e0e0;
+            background: white;
+            padding: 25px;
             border-radius: 8px;
-            transition: border-color 0.2s;
-            font-family: inherit;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-
-        .form-input:focus, .form-textarea:focus {
-            outline: none;
-            border-color: #2b7ac9;
-        }
-
-        .generate-button {
-            width: 100%;
-            padding: 18px;
-            font-size: 18px;
-            font-weight: 600;
-            color: white;
-            background: linear-gradient(135deg, #2b7ac9 0%, #1e5a9e 100%);
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            margin-top: 24px;
-        }
-
-        .generate-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(43, 122, 201, 0.4);
-        }
-
-        .generate-button:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .preview-container {
-            margin-top: 40px;
-            padding-top: 40px;
-            border-top: 2px solid #e0e0e0;
-            display: none;
-        }
-
-        .preview-container.active {
-            display: block;
-        }
-
-        .section-heading {
-            font-size: 24px;
-            font-weight: 600;
-            color: #333;
+        
+        .form-group {
             margin-bottom: 20px;
         }
-
-        .preview-frame {
-            width: 100%;
-            height: 600px;
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
-            background: white;
+        
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
         }
-
+        
+        input[type="text"],
+        input[type="url"],
+        input[type="file"],
+        input[type="password"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+        }
+        
+        input[type="file"] {
+            padding: 8px;
+        }
+        
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        small {
+            color: #666;
+            display: block;
+            margin-top: 5px;
+            font-size: 12px;
+        }
+        
+        .or-divider {
+            text-align: center;
+            margin: 15px 0;
+            color: #999;
+            font-style: italic;
+        }
+        
         .button-group {
             display: flex;
-            gap: 16px;
-            margin-top: 24px;
+            gap: 10px;
+            margin-top: 20px;
         }
-
-        .button-primary {
-            flex: 1;
-            padding: 16px;
-            font-size: 16px;
-            font-weight: 600;
-            color: white;
-            background: linear-gradient(135deg, #2b7ac9 0%, #1e5a9e 100%);
+        
+        button {
+            padding: 12px 24px;
             border: none;
-            border-radius: 10px;
+            border-radius: 4px;
             cursor: pointer;
-            transition: transform 0.2s;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background 0.3s;
         }
 
-        .button-primary:hover {
-            transform: translateY(-2px);
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .btn-generate {
+            background: #4CAF50;
+            color: white;
+            flex: 1;
+        }
+        
+        .btn-generate:hover:not(:disabled) {
+            background: #45a049;
         }
 
-        .success-message {
-            background: #d4edda;
-            border-left: 4px solid #28a745;
-            padding: 16px;
-            border-radius: 8px;
-            color: #155724;
-            margin-top: 16px;
+        .btn-ai-generate {
+            background: #4285F4;
+            color: white;
+            flex: 1;
+        }
+
+        .btn-ai-generate:hover:not(:disabled) {
+            background: #357AE8;
+        }
+        
+        .btn-clear {
+            background: #f44336;
+            color: white;
+        }
+        
+        .btn-clear:hover {
+            background: #da190b;
+        }
+        
+        .btn-copy {
+            background: #2196F3;
+            color: white;
+            width: 100%;
+        }
+        
+        .btn-copy:hover {
+            background: #0b7dda;
+        }
+        
+        .preview-section {
             display: none;
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-
+        
+        .preview-section.active {
+            display: block;
+        }
+        
+        .preview-container {
+            position: relative;
+            display: inline-block;
+            margin: 20px 0;
+        }
+        
+        .preview-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+        }
+        
+        .preview-overlay {
+            position: absolute;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            padding: 10px;
+            z-index: 10;
+            display: none;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            width: 90%;
+        }
+        
+        .preview-overlay.show {
+            display: block;
+        }
+        
+        .preview-overlay.top {
+            top: 10px;
+        }
+        
+        .preview-overlay.center {
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .preview-overlay.bottom {
+            bottom: 10px;
+        }
+        
+        .itabs-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 30px;
+            height: 30px;
+            background: rgba(33, 150, 243, 0.9);
+            color: white;
+            border: 2px solid white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            transition: transform 0.2s;
+            z-index: 20;
+        }
+        
+        .itabs-button:hover {
+            transform: scale(1.1);
+        }
+        
+        .itabs-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .itabs-popup.active {
+            display: flex;
+        }
+        
+        .popup-content {
+            background: white;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        
+        .popup-close {
+            position: sticky;
+            top: 0;
+            background: white;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            text-align: right;
+            z-index: 1;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+            padding: 0;
+            width: auto;
+        }
+        
+        .popup-section {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .popup-section:last-child {
+            border-bottom: none;
+        }
+        
+        .popup-section h3 {
+            color: #2196F3;
+            margin-bottom: 10px;
+        }
+        
+        .popup-section p {
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .popup-button {
+            display: block;
+            width: calc(100% - 40px);
+            margin: 20px;
+            padding: 15px;
+            background: #4CAF50;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .popup-button:hover {
+            background: #45a049;
+        }
+        
+        .code-section {
+            margin-top: 20px;
+        }
+        
+        .code-box {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 15px;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+        }
+        
+        .success-message {
+            display: none;
+            background: #4CAF50;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+            text-align: center;
+        }
+        
         .success-message.active {
             display: block;
         }
 
+        .warning-message {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            color: #856404;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
         .error-message {
-            background: #ffebee;
-            border-left: 4px solid #f44336;
-            padding: 16px;
-            border-radius: 8px;
-            color: #c62828;
-            margin-top: 16px;
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
             display: none;
         }
 
@@ -210,24 +378,36 @@
             display: block;
         }
 
+        .file-status {
+            color: #28a745;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .file-status.show {
+            display: block;
+        }
+
         .loading {
+            display: none;
             text-align: center;
             padding: 20px;
-            display: none;
+            color: #666;
         }
 
         .loading.active {
             display: block;
         }
 
-        .spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #2b7ac9;
+        .loading-spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #4285F4;
             border-radius: 50%;
             width: 40px;
             height: 40px;
             animation: spin 1s linear infinite;
-            margin: 0 auto 12px;
+            margin: 0 auto 10px;
         }
 
         @keyframes spin {
@@ -235,449 +415,548 @@
             100% { transform: rotate(360deg); }
         }
 
-        @media (max-width: 600px) {
-            .generator-content {
-                padding: 24px;
-            }
-            .generator-header h1 {
-                font-size: 24px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="generator-container">
-        <div class="generator-header">
-            <h1>iTabs AI Generator</h1>
-            <p>Paste your API key and let AI create your demo!</p>
-        </div>
-
-        <div class="generator-content">
-            <div class="info-box">
-                <div class="info-box-title">⚡ AI-Powered Generation</div>
-                <div class="info-box-text">
-                    Paste your Gemini API key below and AI will automatically generate engaging iTabs content for you! Get your free API key at <a href="https://aistudio.google.com/app/apikey" target="_blank">Google AI Studio</a>
-                </div>
-            </div>
-
-            <form id="demoForm">
-                <div class="form-section">
-                    <label class="form-label" for="apiKey">Your Gemini API Key</label>
-                    <span class="form-help">Get your free API key at <a href="https://aistudio.google.com/app/apikey" target="_blank">aistudio.google.com</a></span>
-                    <input 
-                        type="text" 
-                        id="apiKey" 
-                        class="form-input"
-                        placeholder="AIza..."
-                        required
-                    >
-                </div>
-
-                <div class="form-section">
-                    <label class="form-label" for="urlInput">Your Website or Campaign URL</label>
-                    <span class="form-help">AI will analyze this URL to create relevant iTabs content</span>
-                    <input 
-                        type="url" 
-                        id="urlInput" 
-                        class="form-input"
-                        placeholder="https://your-website.com"
-                        value="https://itabs.ai"
-                        required
-                    >
-                </div>
-
-                <button type="submit" class="generate-button" id="generateBtn">
-                    🚀 Generate with AI
-                </button>
-            </form>
-
-            <div class="loading" id="loading">
-                <div class="spinner"></div>
-                <p>AI is creating your iTabs content...</p>
-            </div>
-
-            <div class="success-message" id="successMessage"></div>
-            <div class="error-message" id="errorMessage"></div>
-
-            <div class="preview-container" id="previewContainer">
-                <h2 class="section-heading">✨ Your AI-Generated iTabs</h2>
-                <iframe id="previewFrame" class="preview-frame"></iframe>
-                <div class="button-group">
-                    <button type="button" class="button-primary" id="downloadBtn">
-                        💾 Download HTML File
-                    </button>
-                    <button type="button" class="button-primary" id="copyBtn">
-                        📋 Copy HTML Code
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        const demoImageData = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent('<svg width="1080" height="1080" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#e8f4f8;stop-opacity:1" /><stop offset="100%" style="stop-color:#d0e8f2;stop-opacity:1" /></linearGradient></defs><rect width="1080" height="1080" fill="url(#bg)"/><rect x="340" y="290" width="400" height="320" rx="20" fill="none" stroke="#999" stroke-width="8"/><path d="M 380 540 L 480 400 L 580 500 L 700 540 Z" fill="#999"/><circle cx="630" cy="370" r="40" fill="#999"/><text x="540" y="720" font-family="Arial" font-size="56" font-weight="bold" fill="#333" text-anchor="middle">iTabs Demo</text><text x="540" y="780" font-family="Arial" font-size="36" fill="#666" text-anchor="middle">1080 x 1080</text></svg>');
-
-        let generatedHTML = null;
-
-        document.getElementById('demoForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            await handleGenerate();
-        });
-
-        document.getElementById('downloadBtn').addEventListener('click', downloadDemo);
-        document.getElementById('copyBtn').addEventListener('click', copyToClipboard);
-
-        async function handleGenerate() {
-            const apiKey = document.getElementById('apiKey').value.trim();
-            const url = document.getElementById('urlInput').value.trim();
-            
-            if (!apiKey || !url) {
-                showError('Please fill in all fields');
-                return;
-            }
-
-            document.getElementById('generateBtn').disabled = true;
-            document.getElementById('loading').classList.add('active');
-            document.getElementById('errorMessage').classList.remove('active');
-            document.getElementById('successMessage').classList.remove('active');
-
-            try {
-                const content = await generateWithAI(apiKey, url);
-                generatedHTML = generateHTML(content);
-                displayPreview(generatedHTML);
-                showSuccess('✅ AI generated your iTabs! Click the blue "i" to test it.');
-                document.getElementById('previewContainer').classList.add('active');
-                document.getElementById('previewContainer').scrollIntoView({ behavior: 'smooth', block: 'start' });
-            } catch (error) {
-                showError('Error: ' + error.message);
-            } finally {
-                document.getElementById('generateBtn').disabled = false;
-                document.getElementById('loading').classList.remove('active');
-            }
-        }
-
-        async function generateWithAI(apiKey, url) {
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`;
-            
-            const response = await fetch(apiUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    contents: [{
-                        parts: [{
-                            text: `Analyze this URL: ${url}
-
-Create iTabs content with these exact fields:
-
-1. OVERLAY_TEXT: A short, compelling text (5-7 words max) that would appear on an image to make people want to click an info button. Include the ℹ️ emoji at the end. Make it curiosity-driven.
-
-2. POPUP_TITLE: A clear question or statement (3-5 words) that would be the heading of the popup explanation.
-
-3. POPUP_CONTENT: A detailed but concise explanation (2-3 paragraphs) about the content. Write in simple HTML with <p> tags for paragraphs. Make it informative and engaging.
-
-Format your response EXACTLY like this:
-OVERLAY_TEXT: [your text here]
-POPUP_TITLE: [your title here]
-POPUP_CONTENT: [your content here with HTML tags]`
-                        }]
-                    }],
-                    generationConfig: {
-                        temperature: 0.7,
-                        maxOutputTokens: 1024
-                    }
-                })
-            });
-
-            if (!response.ok) {
-                const errorData = await response.text();
-                console.error('API Error:', errorData);
-                
-                if (response.status === 400) {
-                    throw new Error('Invalid API key. Make sure it starts with "AIza" and is enabled for Gemini API.');
-                }
-                if (response.status === 404) {
-                    throw new Error('API not found. Your API key may need Gemini API enabled at console.cloud.google.com');
-                }
-                throw new Error(`API Error ${response.status}. Check console for details.`);
-            }
-
-            const data = await response.json();
-            
-            if (!data.candidates || !data.candidates[0]) {
-                throw new Error('No response from AI. Please try again.');
-            }
-            
-            const generatedText = data.candidates[0].content.parts[0].text;
-            
-            const overlayMatch = generatedText.match(/OVERLAY_TEXT:\s*(.+?)(?=\nPOPUP_TITLE:|$)/s);
-            const titleMatch = generatedText.match(/POPUP_TITLE:\s*(.+?)(?=\nPOPUP_CONTENT:|$)/s);
-            const contentMatch = generatedText.match(/POPUP_CONTENT:\s*(.+?)$/s);
-            
-            return {
-                overlayText: overlayMatch ? overlayMatch[1].trim() : 'Discover more ℹ️',
-                popupTitle: titleMatch ? titleMatch[1].trim() : 'Learn More',
-                popupContent: contentMatch ? contentMatch[1].trim() : '<p>Interactive information system.</p>'
-            };
-        }
-
-        function displayPreview(html) {
-            document.getElementById('previewFrame').srcdoc = html;
-        }
-
-        function generateHTML(content) {
-            return `<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iTabs Demo</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-            background: #f5f5f5;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .ai-section {
+            background: #E8F0FE;
+            border: 2px solid #4285F4;
             padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
         }
-        .itabs-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+
+        .ai-section h3 {
+            color: #4285F4;
+            margin-bottom: 15px;
         }
-        .itabs-image-wrapper {
-            position: relative;
-            width: 100%;
-            padding-bottom: 100%;
-            background: #e0e0e0;
-            overflow: hidden;
-        }
-        .itabs-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .itabs-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 24px 32px;
-            background: rgba(0,0,0,0.75);
-            border-radius: 12px;
-            backdrop-filter: blur(8px);
-            max-width: 80%;
-        }
-        .itabs-overlay-text {
+
+        .free-badge {
+            background: #4CAF50;
             color: white;
-            font-size: 26px;
-            font-weight: 600;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            text-align: center;
-            line-height: 1.3;
-        }
-        .itabs-button {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            width: 50px;
-            height: 50px;
-            background: #007bff;
-            border-radius: 50%;
-            border: 3px solid white;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 28px;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 12px;
             font-weight: bold;
-            font-style: italic;
-            transition: transform 0.2s;
-            z-index: 10;
+            margin-left: 10px;
         }
-        .itabs-button:hover {
-            transform: scale(1.1);
+
+        .instruction-box {
+            background: #FFF9C4;
+            border-left: 4px solid #FBC02D;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
         }
-        .itabs-overlay-backdrop {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.5);
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s;
-            z-index: 999;
+
+        .instruction-box h4 {
+            color: #F57C00;
+            margin-bottom: 10px;
         }
-        .itabs-overlay-backdrop.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        .itabs-popup {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: white;
-            transform: translateY(100%);
-            transition: transform 0.3s;
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-        }
-        .itabs-popup.active {
-            transform: translateY(0);
-        }
-        .itabs-popup-header {
-            background: linear-gradient(135deg, #1e5a9e 0%, #2b7ac9 100%);
-            color: white;
-            padding: 20px 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-shrink: 0;
-        }
-        .itabs-popup-header-title {
-            font-size: 20px;
-            font-weight: 600;
-        }
-        .itabs-popup-content {
-            flex: 1;
-            overflow-y: auto;
-            padding: 24px;
-        }
-        .itabs-popup-text {
-            font-size: 17px;
-            line-height: 1.7;
+
+        .instruction-box ol {
+            margin-left: 20px;
             color: #333;
         }
-        .itabs-popup-text p {
-            margin-bottom: 16px;
-        }
-        .itabs-close-button {
-            width: 36px;
-            height: 36px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 50%;
-            border: 2px solid white;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: white;
+
+        .instruction-box li {
+            margin-bottom: 8px;
         }
     </style>
 </head>
 <body>
-    <div class="itabs-container">
-        <div class="itabs-image-wrapper">
-            <img src="${demoImageData}" class="itabs-image" alt="iTabs Demo">
-            <div class="itabs-button" onclick="openPopup()">i</div>
-            <div class="itabs-overlay">
-                <div class="itabs-overlay-text">${content.overlayText}</div>
-            </div>
+    <h1>iTabs Generator - FREE AI <span class="free-badge">100% FREE</span><span class="demo-badge">PRE-FILLED DEMO</span></h1>
+    <p class="subtitle">Create your information popup in seconds with Google's FREE AI</p>
+
+    <div class="instruction-box">
+        <h4>🎯 Quick Demo Instructions:</h4>
+        <ol>
+            <li>Get your FREE Google API key from <a href="https://aistudio.google.com/app/apikey" target="_blank">here</a></li>
+            <li>Paste your API key in the box below</li>
+            <li>Click "Generate with FREE AI"</li>
+            <li>Wait 30 seconds while AI reads the campaign and writes content</li>
+            <li>Review the AI-generated sections and click "Generate iTabs Code"</li>
+            <li>Click the "i" button to test your popup!</li>
+        </ol>
+    </div>
+
+    <div class="form-section ai-section">
+        <h3>🤖 AI Mode - Instant iTabs Generation (NO PAYMENT NEEDED!)</h3>
+        
+        <div class="form-group">
+            <label for="campaignUrl">Paste Campaign/Product URL:</label>
+            <input type="url" id="campaignUrl" value="https://www.birchal.com/company/bioanalytics" placeholder="https://www.birchal.com/company/your-campaign">
+            <small>✅ Pre-filled with BioAnalytics campaign (change if you want)</small>
+        </div>
+
+        <div class="form-group">
+            <label for="apiKey">Your Google API Key (FREE):</label>
+            <input type="password" id="apiKey" placeholder="Paste your FREE Google API key here">
+            <small>Get your FREE API key from <a href="https://aistudio.google.com/app/apikey" target="_blank">aistudio.google.com/app/apikey</a> - No credit card needed!</small>
+        </div>
+
+        <div class="form-group">
+            <label for="imageUrl">Product Image URL:</label>
+            <input type="url" id="imageUrl" value="https://i.ibb.co/391375nn/IMG-3599.jpg" placeholder="https://i.ibb.co/your-image.jpg">
+            <small>✅ Pre-filled with sample image (change if you want)</small>
+        </div>
+
+        <div class="button-group">
+            <button class="btn-ai-generate" id="aiGenerateBtn">✨ Generate with FREE AI</button>
+        </div>
+
+        <div class="loading" id="loading">
+            <div class="loading-spinner"></div>
+            <p id="loadingText">Reading campaign page...</p>
+        </div>
+
+        <div class="error-message" id="errorMessage"></div>
+    </div>
+
+    <div class="or-divider">- OR MANUAL MODE -</div>
+
+    <div class="form-section">
+        <h2>Build Your iTabs Manually</h2>
+        
+        <div class="form-group">
+            <label for="imageFile">Upload Product Image:</label>
+            <input type="file" id="imageFile" accept="image/*">
+            <small>Choose an image from your device</small>
+            <div id="fileStatus" class="file-status">✓ Image loaded and ready</div>
+        </div>
+
+        <div class="warning-message" id="imageWarning" style="display: none;">
+            Note: Uploaded images will work in preview, but for the final code to work on your website, you'll need to upload your image to an image hosting service and use that URL.
+        </div>
+        
+        <div class="form-group">
+            <label for="overlayText">Overlay Text (Optional):</label>
+            <input type="text" id="overlayText" placeholder="e.g., Click the i for more info" value="Click the i for more info">
+            <small>Short text that appears on the image - leave blank for no overlay</small>
+        </div>
+
+        <div class="form-group">
+            <label for="overlayPosition">Overlay Position:</label>
+            <select id="overlayPosition">
+                <option value="top">Top</option>
+                <option value="center" selected>Center</option>
+                <option value="bottom">Bottom</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="section1">What is it?</label>
+            <textarea id="section1" placeholder="AI will fill this automatically, or you can write it yourself"></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="section2">Why do I need it?</label>
+            <textarea id="section2" placeholder="AI will fill this automatically, or you can write it yourself"></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="section3">How does it work?</label>
+            <textarea id="section3" placeholder="AI will fill this automatically, or you can write it yourself"></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="section4">What makes it different?</label>
+            <textarea id="section4" placeholder="AI will fill this automatically, or you can write it yourself"></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="buttonText">Button Text:</label>
+            <input type="text" id="buttonText" value="Learn More">
+        </div>
+        
+        <div class="form-group">
+            <label for="buttonLink">Button Links To:</label>
+            <input type="url" id="buttonLink" placeholder="https://your-website.com">
+        </div>
+        
+        <div class="button-group">
+            <button class="btn-generate" id="generateBtn">Generate iTabs Code</button>
+            <button class="btn-clear" id="clearBtn">Clear Form</button>
         </div>
     </div>
 
-    <div class="itabs-overlay-backdrop" onclick="closePopup()"></div>
-    
-    <div class="itabs-popup">
-        <div class="itabs-popup-header">
-            <div class="itabs-popup-header-title">${content.popupTitle}</div>
-            <button class="itabs-close-button" onclick="closePopup()">×</button>
+    <div class="preview-section" id="previewSection">
+        <h2>Preview Your iTabs</h2>
+        <p style="color: #666; margin-bottom: 20px;">Click the "i" button to test your popup</p>
+        
+        <div class="preview-container" id="previewContainer">
+            <img id="previewImage" class="preview-image" src="" alt="Product">
+            <div id="previewOverlay" class="preview-overlay"></div>
+            <div class="itabs-button" id="previewItabsBtn">i</div>
         </div>
-        <div class="itabs-popup-content">
-            <div class="itabs-popup-text">
-                ${content.popupContent}
+        
+        <div class="code-section">
+            <h3>Your iTabs Code</h3>
+            <p style="color: #666; margin-bottom: 10px;">Copy this code and paste it on your website:</p>
+            <div class="code-box" id="codeBox"></div>
+            <button class="btn-copy" id="copyBtn">Copy Code</button>
+            <div class="success-message" id="successMessage">Code copied to clipboard!</div>
+        </div>
+    </div>
+
+    <div class="itabs-popup" id="itabsPopup">
+        <div class="popup-content" id="popupContent">
+            <div class="popup-close">
+                <button class="close-btn" id="closeBtn">&times;</button>
             </div>
+            <div class="popup-section">
+                <h3>What is it?</h3>
+                <p id="popupSection1"></p>
+            </div>
+            <div class="popup-section">
+                <h3>Why do I need it?</h3>
+                <p id="popupSection2"></p>
+            </div>
+            <div class="popup-section">
+                <h3>How does it work?</h3>
+                <p id="popupSection3"></p>
+            </div>
+            <div class="popup-section">
+                <h3>What makes it different?</h3>
+                <p id="popupSection4"></p>
+            </div>
+            <a href="#" id="popupButton" class="popup-button" target="_blank"></a>
         </div>
     </div>
 
     <script>
-        function openPopup() {
-            document.querySelector(".itabs-popup").classList.add("active");
-            document.querySelector(".itabs-overlay-backdrop").classList.add("active");
-            document.body.style.overflow = "hidden";
-        }
-        
-        function closePopup() {
-            document.querySelector(".itabs-popup").classList.remove("active");
-            document.querySelector(".itabs-overlay-backdrop").classList.remove("active");
-            document.body.style.overflow = "";
-        }
-    </script>
-</body>
-</html>`;
-        }
+        let uploadedImageData = null;
 
-        function downloadDemo() {
-            if (!generatedHTML) {
-                showError('Please generate your demo first');
-                return;
-            }
-
-            const blob = new Blob([generatedHTML], { type: 'text/html' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'my-itabs-demo.html';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-            showSuccess('✅ Downloaded! Open the HTML file in your browser.');
-        }
-
-        function copyToClipboard() {
-            if (!generatedHTML) {
-                showError('Please generate your demo first');
-                return;
-            }
-
-            navigator.clipboard.writeText(generatedHTML).then(function() {
-                showSuccess('✅ HTML code copied to clipboard!');
-            }).catch(function() {
-                showError('Could not copy. Try the download button instead.');
+        document.addEventListener('DOMContentLoaded', function() {
+            const generateBtn = document.getElementById('generateBtn');
+            const aiGenerateBtn = document.getElementById('aiGenerateBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const copyBtn = document.getElementById('copyBtn');
+            const previewItabsBtn = document.getElementById('previewItabsBtn');
+            const closeBtn = document.getElementById('closeBtn');
+            const itabsPopup = document.getElementById('itabsPopup');
+            const popupContent = document.getElementById('popupContent');
+            const imageFile = document.getElementById('imageFile');
+            const imageUrl = document.getElementById('imageUrl');
+            const fileStatus = document.getElementById('fileStatus');
+            
+            generateBtn.addEventListener('click', generatePreview);
+            aiGenerateBtn.addEventListener('click', aiGenerate);
+            clearBtn.addEventListener('click', clearForm);
+            copyBtn.addEventListener('click', copyCode);
+            previewItabsBtn.addEventListener('click', openPopup);
+            closeBtn.addEventListener('click', closePopup);
+            
+            imageFile.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file && file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        uploadedImageData = event.target.result;
+                        fileStatus.classList.add('show');
+                        document.getElementById('imageUrl').value = '';
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    alert('Please select a valid image file');
+                    imageFile.value = '';
+                }
             });
-        }
 
-        function showSuccess(message) {
-            const div = document.getElementById('successMessage');
-            div.textContent = message;
-            div.classList.add('active');
-            setTimeout(function() {
-                div.classList.remove('active');
-            }, 5000);
+            imageUrl.addEventListener('input', function() {
+                if (imageUrl.value.trim() !== '') {
+                    imageFile.value = '';
+                    uploadedImageData = null;
+                    fileStatus.classList.remove('show');
+                }
+            });
+            
+            itabsPopup.addEventListener('click', function(e) {
+                if (e.target === itabsPopup) {
+                    closePopup();
+                }
+            });
+            
+            popupContent.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        });
+
+        async function aiGenerate() {
+            const campaignUrl = document.getElementById('campaignUrl').value.trim();
+            const apiKey = document.getElementById('apiKey').value.trim();
+            const imageUrl = document.getElementById('imageUrl').value.trim();
+            const errorMessage = document.getElementById('errorMessage');
+            const loading = document.getElementById('loading');
+            const loadingText = document.getElementById('loadingText');
+            const aiGenerateBtn = document.getElementById('aiGenerateBtn');
+
+            if (!campaignUrl) {
+                showError('Please enter a campaign URL');
+                return;
+            }
+
+            if (!apiKey) {
+                showError('Please enter your Google API key. Get it FREE at aistudio.google.com/app/apikey');
+                return;
+            }
+
+            if (!imageUrl) {
+                showError('Please enter a product image URL');
+                return;
+            }
+
+            errorMessage.classList.remove('active');
+            loading.classList.add('active');
+            aiGenerateBtn.disabled = true;
+
+            try {
+                // Step 1: Read URL with Jina
+                loadingText.textContent = 'Reading campaign page...';
+                const jinaUrl = `https://r.jina.ai/${campaignUrl}`;
+                const jinaResponse = await fetch(jinaUrl);
+                const pageContent = await jinaResponse.text();
+
+                // Step 2: Send to Gemini API - FIXED WITH STABLE MODEL
+                loadingText.textContent = 'AI is writing your iTabs...';
+                
+                const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+                
+                const geminiResponse = await fetch(geminiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{
+                                text: `Based on this campaign/product page content, write 4 short sections for an information popup. Keep each section 2-3 sentences maximum, written in plain English that anyone can understand.
+
+Campaign Content:
+${pageContent.substring(0, 4000)}
+
+Please respond in this exact JSON format:
+{
+  "section1": "What is it? (simple explanation)",
+  "section2": "Why do I need it? (the problem it solves)",
+  "section3": "How does it work? (simple steps)",
+  "section4": "What makes it different? (unique value)",
+  "buttonText": "Short call-to-action (3-5 words)",
+  "buttonLink": "${campaignUrl}"
+}`
+                            }]
+                        }]
+                    })
+                });
+
+                if (!geminiResponse.ok) {
+                    const errorData = await geminiResponse.json();
+                    throw new Error('Gemini API error: ' + (errorData.error?.message || geminiResponse.statusText));
+                }
+
+                const geminiData = await geminiResponse.json();
+                const responseText = geminiData.candidates[0].content.parts[0].text;
+                
+                // Extract JSON from response
+                const jsonMatch = responseText.match(/\{[\s\S]*\}/);
+                if (!jsonMatch) {
+                    throw new Error('Could not parse AI response');
+                }
+                
+                const aiContent = JSON.parse(jsonMatch[0]);
+
+                // Fill in the form
+                document.getElementById('section1').value = aiContent.section1;
+                document.getElementById('section2').value = aiContent.section2;
+                document.getElementById('section3').value = aiContent.section3;
+                document.getElementById('section4').value = aiContent.section4;
+                document.getElementById('buttonText').value = aiContent.buttonText;
+                document.getElementById('buttonLink').value = aiContent.buttonLink;
+
+                loading.classList.remove('active');
+                aiGenerateBtn.disabled = false;
+                
+                document.getElementById('section1').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                setTimeout(() => {
+                    alert('✨ AI generated your iTabs! Review the sections below and click "Generate iTabs Code" when ready.');
+                }, 500);
+
+            } catch (error) {
+                loading.classList.remove('active');
+                aiGenerateBtn.disabled = false;
+                showError('Error: ' + error.message);
+                console.error(error);
+            }
         }
 
         function showError(message) {
-            const div = document.getElementById('errorMessage');
-            div.textContent = message;
-            div.classList.add('active');
+            const errorMessage = document.getElementById('errorMessage');
+            errorMessage.textContent = message;
+            errorMessage.classList.add('active');
+        }
+        
+        function generatePreview() {
+            let imageSource = '';
+            const imageWarning = document.getElementById('imageWarning');
+            const imageUrlInput = document.getElementById('imageUrl');
+
+            if (uploadedImageData) {
+                imageSource = uploadedImageData;
+                imageWarning.style.display = 'block';
+            } else if (imageUrlInput.value.trim() !== '') {
+                imageSource = imageUrlInput.value.trim();
+                imageWarning.style.display = 'none';
+            } else {
+                alert('Please upload an image or enter an image URL');
+                return;
+            }
+
+            const overlayText = document.getElementById('overlayText').value;
+            const overlayPosition = document.getElementById('overlayPosition').value;
+            const section1 = document.getElementById('section1').value;
+            const section2 = document.getElementById('section2').value;
+            const section3 = document.getElementById('section3').value;
+            const section4 = document.getElementById('section4').value;
+            const buttonText = document.getElementById('buttonText').value;
+            const buttonLink = document.getElementById('buttonLink').value;
+
+            if (!section1 || !section2 || !section3 || !section4) {
+                alert('Please fill in all 4 sections or use AI to generate them');
+                return;
+            }
+            
+            const previewImg = document.getElementById('previewImage');
+            previewImg.src = imageSource;
+            
+            const previewOverlay = document.getElementById('previewOverlay');
+            
+            if (overlayText.trim() !== '') {
+                previewOverlay.textContent = overlayText;
+                previewOverlay.className = 'preview-overlay show ' + overlayPosition;
+            } else {
+                previewOverlay.className = 'preview-overlay';
+            }
+            
+            document.getElementById('popupSection1').textContent = section1;
+            document.getElementById('popupSection2').textContent = section2;
+            document.getElementById('popupSection3').textContent = section3;
+            document.getElementById('popupSection4').textContent = section4;
+            document.getElementById('popupButton').textContent = buttonText;
+            document.getElementById('popupButton').href = buttonLink;
+            
+            let codeImageUrl = uploadedImageData ? 'YOUR-IMAGE-URL-HERE' : imageUrlInput.value.trim();
+            const code = generateCode(codeImageUrl, overlayText, overlayPosition, section1, section2, section3, section4, buttonText, buttonLink);
+            document.getElementById('codeBox').textContent = code;
+            
+            document.getElementById('previewSection').classList.add('active');
+            document.getElementById('previewSection').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function generateCode(imageUrl, overlayText, overlayPosition, s1, s2, s3, s4, btnText, btnLink) {
+            const positionStyles = {
+                'top': 'top: 10px; left: 50%; transform: translateX(-50%);',
+                'center': 'top: 50%; left: 50%; transform: translate(-50%, -50%);',
+                'bottom': 'bottom: 10px; left: 50%; transform: translateX(-50%);'
+            };
+            
+            const overlayCode = overlayText.trim() !== '' 
+                ? `    <div style="position: absolute; ${positionStyles[overlayPosition]} color: white; font-weight: bold; font-size: 18px; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); padding: 10px; z-index: 10; text-align: center; width: 90%;">${overlayText}</div>\n`
+                : '';
+            
+            return `<!-- iTabs Code - Paste this where you want the product image -->
+<div style="position: relative; display: inline-block;">
+    <img src="${imageUrl}" alt="Product" style="max-width: 100%; height: auto; border-radius: 8px;">
+${overlayCode}    <div id="itabsBtn" style="position: absolute; top: 10px; right: 10px; width: 30px; height: 30px; background: rgba(33, 150, 243, 0.9); color: white; border: 2px solid white; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 18px; font-weight: bold; box-shadow: 0 2px 8px rgba(0,0,0,0.3); z-index: 20;">i</div>
+</div>
+
+<div id="itabsPopup" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center; padding: 20px;">
+    <div id="itabsContent" style="background: white; border-radius: 8px; max-width: 500px; width: 100%; max-height: 80vh; overflow-y: auto;">
+        <div style="position: sticky; top: 0; background: white; padding: 15px; border-bottom: 1px solid #eee; text-align: right;">
+            <button id="itabsClose" style="background: none; border: none; font-size: 24px; cursor: pointer; color: #666;">&times;</button>
+        </div>
+        <div style="padding: 20px; border-bottom: 1px solid #eee;">
+            <h3 style="color: #2196F3; margin-bottom: 10px;">What is it?</h3>
+            <p>${s1}</p>
+        </div>
+        <div style="padding: 20px; border-bottom: 1px solid #eee;">
+            <h3 style="color: #2196F3; margin-bottom: 10px;">Why do I need it?</h3>
+            <p>${s2}</p>
+        </div>
+        <div style="padding: 20px; border-bottom: 1px solid #eee;">
+            <h3 style="color: #2196F3; margin-bottom: 10px;">How does it work?</h3>
+            <p>${s3}</p>
+        </div>
+        <div style="padding: 20px; border-bottom: 1px solid #eee;">
+            <h3 style="color: #2196F3; margin-bottom: 10px;">What makes it different?</h3>
+            <p>${s4}</p>
+        </div>
+        <a href="${btnLink}" target="_blank" style="display: block; width: calc(100% - 40px); margin: 20px; padding: 15px; background: #4CAF50; color: white; text-align: center; text-decoration: none; border-radius: 4px; font-weight: bold;">${btnText}</a>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('itabsBtn').addEventListener('click', function() {
+        document.getElementById('itabsPopup').style.display = 'flex';
+    });
+    
+    document.getElementById('itabsClose').addEventListener('click', function() {
+        document.getElementById('itabsPopup').style.display = 'none';
+    });
+    
+    document.getElementById('itabsPopup').addEventListener('click', function(e) {
+        if (e.target.id === 'itabsPopup') {
+            document.getElementById('itabsPopup').style.display = 'none';
+        }
+    });
+    
+    document.getElementById('itabsContent').addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+});
+</scr` + `ipt>`;
+        }
+        
+        function clearForm() {
+            document.getElementById('campaignUrl').value = 'https://www.birchal.com/company/bioanalytics';
+            document.getElementById('apiKey').value = '';
+            document.getElementById('imageFile').value = '';
+            document.getElementById('imageUrl').value = 'https://i.ibb.co/391375nn/IMG-3599.jpg';
+            document.getElementById('overlayText').value = 'Click the i for more info';
+            document.getElementById('overlayPosition').value = 'center';
+            document.getElementById('section1').value = '';
+            document.getElementById('section2').value = '';
+            document.getElementById('section3').value = '';
+            document.getElementById('section4').value = '';
+            document.getElementById('buttonText').value = 'Learn More';
+            document.getElementById('buttonLink').value = '';
+            document.getElementById('previewSection').classList.remove('active');
+            document.getElementById('imageWarning').style.display = 'none';
+            document.getElementById('fileStatus').classList.remove('show');
+            document.getElementById('errorMessage').classList.remove('active');
+            uploadedImageData = null;
+        }
+        
+        function openPopup() {
+            document.getElementById('itabsPopup').classList.add('active');
+        }
+        
+        function closePopup() {
+            document.getElementById('itabsPopup').classList.remove('active');
+        }
+        
+        function copyCode() {
+            const codeBox = document.getElementById('codeBox');
+            const textArea = document.createElement('textarea');
+            textArea.value = codeBox.textContent;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            
+            const successMessage = document.getElementById('successMessage');
+            successMessage.classList.add('active');
+            setTimeout(() => {
+                successMessage.classList.remove('active');
+            }, 3000);
         }
     </script>
 </body>
