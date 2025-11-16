@@ -731,6 +731,12 @@
                 <small>Get it instantly at <a href="https://aistudio.google.com/app/apikey" target="_blank">aistudio.google.com/app/apikey</a> - No payment required!</small>
             </div>
 
+            <div class="form-group">
+                <label for="imgbbKey">🖼️ Your ImgBB API Key (FREE - Optional):</label>
+                <input type="password" id="imgbbKey" value="59cd5b2935b5b01bc744b5b0a1d26ee0" placeholder="Paste your FREE ImgBB API key here (optional)">
+                <small>Get it from <a href="https://api.imgbb.com/" target="_blank">api.imgbb.com</a> - Allows automatic image hosting so your code works anywhere!</small>
+            </div>
+
             <div class="button-group">
                 <button class="btn-ai-generate" id="aiGenerateBtn">✨ Generate with AI</button>
             </div>
@@ -752,6 +758,14 @@
                 <label for="overlayText">💬 Text Overlay (Optional):</label>
                 <input type="text" id="overlayText" placeholder="e.g., Click the i for more info" value="Click the i for more info">
                 <small>Short text that appears on the image (leave blank for no overlay)</small>
+            </div>
+
+            <div class="form-group">
+                <label for="overlayColor">🎨 Overlay Text Color:</label>
+                <select id="overlayColor">
+                    <option value="white" selected>White</option>
+                    <option value="black">Black</option>
+                </select>
             </div>
 
             <div class="form-group">
@@ -881,7 +895,18 @@
                     const reader = new FileReader();
                     reader.onload = function(event) {
                         uploadedImageData = event.target.result;
+                        uploadStatus.textContent = '⏳ Uploading image to ImgBB...';
                         uploadStatus.classList.add('show');
+                        
+                        // Try to upload to ImgBB if API key is provided
+                        const imgbbKey = document.getElementById('imgbbKey').value.trim();
+                        if (imgbbKey) {
+                            uploadToImgBB(file, imgbbKey);
+                        } else {
+                            uploadStatus.textContent = '✓ Image loaded (will work in preview only - add ImgBB API key to host online)';
+                            uploadStatus.style.color = '#ffc107';
+                        }
+                        
                         document.getElementById('imageUrl').value = '';
                     };
                     reader.readAsDataURL(file);
@@ -905,6 +930,40 @@
                 }
             });
         });
+
+        async function uploadToImgBB(file, apiKey) {
+            const uploadStatus = document.getElementById('uploadStatus');
+            
+            try {
+                const formData = new FormData();
+                formData.append('image', file);
+                
+                const response = await fetch(`https://api.imgbb.com/1/upload?key=${apiKey}`, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                if (!response.ok) {
+                    throw new Error('ImgBB upload failed');
+                }
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    const imageUrl = data.data.url;
+                    document.getElementById('imageUrl').value = imageUrl;
+                    uploadedImageData = null; // Clear local image data since we have URL now
+                    uploadStatus.textContent = '✓ Image uploaded to ImgBB successfully!';
+                    uploadStatus.style.color = '#28a745';
+                } else {
+                    throw new Error('ImgBB API returned error');
+                }
+            } catch (error) {
+                console.error('ImgBB upload error:', error);
+                uploadStatus.textContent = '⚠️ Image loaded locally (add valid ImgBB API key to host online)';
+                uploadStatus.style.color = '#ffc107';
+            }
+        }
 
         async function aiGenerate() {
             const campaignUrl = document.getElementById('campaignUrl').value.trim();
@@ -939,8 +998,7 @@
                 // Step 2: Send to Gemini API
                 loadingText.textContent = '✨ AI is writing your iTabs content...';
                 
-                const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
-
+                const geminiUrl = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
                 
                 const fullPrompt = `${aiPrompt}
 
@@ -1020,11 +1078,13 @@ Please respond in this exact JSON format:
         
         function generatePreview() {
             let imageSource = '';
+            const imageUrlInput = document.getElementById('imageUrl');
 
-            if (uploadedImageData) {
+            // Prefer the URL (from ImgBB or manually entered) over local upload
+            if (imageUrlInput.value.trim() !== '') {
+                imageSource = imageUrlInput.value.trim();
+            } else if (uploadedImageData) {
                 imageSource = uploadedImageData;
-            } else if (document.getElementById('imageUrl').value.trim() !== '') {
-                imageSource = document.getElementById('imageUrl').value.trim();
             } else {
                 alert('Please upload an image or enter an image URL');
                 return;
@@ -1032,6 +1092,7 @@ Please respond in this exact JSON format:
 
             const overlayText = document.getElementById('overlayText').value;
             const overlayPosition = document.getElementById('overlayPosition').value;
+            const overlayColor = document.getElementById('overlayColor').value;
             const section1 = document.getElementById('section1').value;
             const section2 = document.getElementById('section2').value;
             const section3 = document.getElementById('section3').value;
@@ -1052,6 +1113,7 @@ Please respond in this exact JSON format:
             if (overlayText.trim() !== '') {
                 previewOverlay.textContent = overlayText;
                 previewOverlay.className = 'preview-overlay show ' + overlayPosition;
+                previewOverlay.style.color = overlayColor;
             } else {
                 previewOverlay.className = 'preview-overlay';
             }
@@ -1063,15 +1125,18 @@ Please respond in this exact JSON format:
             document.getElementById('popupButton').textContent = buttonText;
             document.getElementById('popupButton').href = buttonLink || '#';
             
-            let codeImageUrl = uploadedImageData ? 'YOUR-IMAGE-URL-HERE.jpg' : document.getElementById('imageUrl').value.trim();
-            const code = generateCode(codeImageUrl, overlayText, overlayPosition, section1, section2, section3, section4, buttonText, buttonLink);
+            // Use URL if available (from ImgBB upload or manual entry), otherwise placeholder
+            const imageUrlInput = document.getElementById('imageUrl');
+            let codeImageUrl = imageUrlInput.value.trim() || 'YOUR-IMAGE-URL-HERE.jpg';
+            
+            const code = generateCode(codeImageUrl, overlayText, overlayPosition, overlayColor, section1, section2, section3, section4, buttonText, buttonLink);
             document.getElementById('codeBox').textContent = code;
             
             document.getElementById('previewSection').classList.add('active');
             document.getElementById('previewSection').scrollIntoView({ behavior: 'smooth' });
         }
         
-        function generateCode(imageUrl, overlayText, overlayPosition, s1, s2, s3, s4, btnText, btnLink) {
+        function generateCode(imageUrl, overlayText, overlayPosition, overlayColor, s1, s2, s3, s4, btnText, btnLink) {
             const positionStyles = {
                 'top': 'top: 10px;',
                 'center': 'top: 50%; transform: translate(-50%, -50%);',
@@ -1079,7 +1144,7 @@ Please respond in this exact JSON format:
             };
             
             const overlayCode = overlayText.trim() !== '' 
-                ? `    <div style="position: absolute; ${positionStyles[overlayPosition]} left: 50%; transform: translateX(-50%); color: white; font-weight: bold; font-size: 18px; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); padding: 10px; z-index: 10; text-align: center; width: 90%;">${overlayText}</div>\n`
+                ? `    <div style="position: absolute; ${positionStyles[overlayPosition]} left: 50%; transform: translateX(-50%); color: ${overlayColor}; font-weight: bold; font-size: 18px; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); padding: 10px; z-index: 10; text-align: center; width: 90%;">${overlayText}</div>\n`
                 : '';
             
             return `<!-- iTabs Code - Beautiful Interactive Popup -->
