@@ -1126,7 +1126,6 @@ Please respond in this exact JSON format:
             document.getElementById('popupButton').href = buttonLink || '#';
             
             // Use URL if available (from ImgBB upload or manual entry), otherwise placeholder
-            const imageUrlInput = document.getElementById('imageUrl');
             let codeImageUrl = imageUrlInput.value.trim() || 'YOUR-IMAGE-URL-HERE.jpg';
             
             const code = generateCode(codeImageUrl, overlayText, overlayPosition, overlayColor, section1, section2, section3, section4, buttonText, buttonLink);
