@@ -995,10 +995,10 @@
                 const jinaResponse = await fetch(jinaUrl);
                 const pageContent = await jinaResponse.text();
 
-                // Step 2: Send to Gemini API
+                // Step 2: Send to Gemini API - FIXED MODEL NAME
                 loadingText.textContent = '✨ AI is writing your iTabs content...';
                 
-                const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`;
+                const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
                 
                 const fullPrompt = `${aiPrompt}
 
